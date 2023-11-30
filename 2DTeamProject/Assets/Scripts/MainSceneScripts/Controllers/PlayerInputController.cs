@@ -11,4 +11,12 @@ public class PlayerInputController : TopDownCharacterController
         
         CallMoveEvent(moveInput);
     }
+
+    public void OnAttack(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                CallAttackEvent();
+            }
+        }
 }
