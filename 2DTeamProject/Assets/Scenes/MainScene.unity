@@ -4609,6 +4609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 5
   coolTime: 1
+  bulltCount: 2
 --- !u!1 &2123337667
 GameObject:
   m_ObjectHideFlags: 0
