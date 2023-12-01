@@ -2625,6 +2625,7 @@ MonoBehaviour:
   _ExitBtn: {fileID: 354755437}
   _soundSlider: {fileID: 583691522}
   _audioSource: {fileID: 1159189632}
+  _btnSource: {fileID: 1159189633}
 --- !u!82 &1159189632
 AudioSource:
   m_ObjectHideFlags: 0
