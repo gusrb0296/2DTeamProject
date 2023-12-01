@@ -23,26 +23,28 @@ public class StartManager : MonoBehaviour
 
 
     public Slider _soundSlider;
+
     public AudioSource _audioSource;
+    public AudioSource _btnSource;
 
     private void Awake()
     {
         Button _muteOnBtn = _muteOn.GetComponent<Button>();
         Button _muteOffBtn = _muteOff.GetComponent<Button>();
         Button _guideOpenBtn = _Guide.transform.parent.GetComponent<Button>();
-        _audioSource = GetComponent<AudioSource>();
 
-        _startBtn.onClick.AddListener(() => LevelWindow());
-        _closeBtn.onClick.AddListener(() => SettingWindow(false));
-        _gameSettingBtn.onClick.AddListener(() => SettingWindow(true));
+
+        _startBtn.onClick.AddListener(() => { LevelWindow(); _btnSource.Play(); });
+        _closeBtn.onClick.AddListener(() => { SettingWindow(false); _btnSource.Play(); });
+        _gameSettingBtn.onClick.AddListener(() => { SettingWindow(true); _btnSource.Play(); });
         _easyBtn.onClick.AddListener(() => LoadScene(0));
         _normalBtn.onClick.AddListener(() => LoadScene(1));
         _hardBtn.onClick.AddListener(() => LoadScene(2));
-        _muteOnBtn.onClick.AddListener(() => MuteSystem(true, false));
-        _muteOffBtn.onClick.AddListener(() => MuteSystem(false, true));
-        _guideOpenBtn.onClick.AddListener(() => GuideWindow(true));
-        _guideCloseBtn.onClick.AddListener(() => GuideWindow(false));
-        _ExitBtn.onClick.AddListener(() => EndGame());
+        _muteOnBtn.onClick.AddListener(() => { MuteSystem(true, false); _btnSource.Play(); });
+        _muteOffBtn.onClick.AddListener(() => { MuteSystem(false, true); _btnSource.Play(); });
+        _guideOpenBtn.onClick.AddListener(() => { GuideWindow(true); _btnSource.Play(); });
+        _guideCloseBtn.onClick.AddListener(() => { GuideWindow(false); _btnSource.Play(); });
+        _ExitBtn.onClick.AddListener(() => { EndGame(); _btnSource.Play(); });
     }
 
 
