@@ -18,6 +18,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] private Button _normalBtn;
     [SerializeField] private Button _hardBtn;
     [SerializeField] private Button _guideCloseBtn;
+    [SerializeField] private Button _ExitBtn;
 
 
 
@@ -41,6 +42,7 @@ public class StartManager : MonoBehaviour
         _muteOffBtn.onClick.AddListener(() => MuteSystem(false, true));
         _guideOpenBtn.onClick.AddListener(() => GuideWindow(true));
         _guideCloseBtn.onClick.AddListener(() => GuideWindow(false));
+        _ExitBtn.onClick.AddListener(() => EndGame());
     }
 
 
@@ -75,5 +77,9 @@ public class StartManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
         //게임 매니져한테 index값 넘겨주면 해당하는 Enum값 설정하게
+    }
+    private void EndGame()
+    {
+        Application.Quit();
     }
 }
