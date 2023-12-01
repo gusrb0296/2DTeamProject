@@ -32,20 +32,9 @@ public class TopdownMovement : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovent(_movementDirection);
-        LookRotate();
         CollisionWithWall();
     }
-    private void LookRotate()
-    {
-        if (_movementDirection.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (_movementDirection.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
+
     private void CollisionWithWall()
     {
         x = transform.position.x;
