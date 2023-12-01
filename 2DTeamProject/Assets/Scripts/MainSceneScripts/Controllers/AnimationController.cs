@@ -19,10 +19,12 @@ public class AnimationController : MonoBehaviour
     {
         if (direction.x < 0)
         {
+            //_anim.ResetTrigger("RunRight");
             _anim.SetTrigger("RunLeft");
         }
         else if (direction.x > 0)
         {
+            //_anim.ResetTrigger("RunLeft");
             _anim.SetTrigger("RunRight");
         }
         else
