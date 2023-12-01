@@ -4,21 +4,39 @@ using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
 {
-    // 플레이어가 공격버튼을 눌러 이벤트가 발돌되면 _controller에서 값( ) 을 받아옴
-    // 플레이어의 transform(위치)를 기준으로 위쪽 방향으로 force만큼의 힘을 주며 Bullet Prefab을 찍어냄
+    #region ItemType
+    protected enum ItemType
+    {
+        Normal,     
+        BulletUPItem,       // bullet 갯수 증가
+        PenetrateItem,      // 관통
+        BounceItem,         // 튕김
+        GuidedMissileItem   // 유도탄
+    }
+    // ItemType Reset Value
+    protected ItemType currentItem = ItemType.Normal;
+    #endregion
 
-    // 총알의 스크립트는 따로 작성 (총알 스크립트에서 충돌 처리)
 
     TopDownCharacterController _controller;
 
-    Rigidbody2D bulletRigid;
+    Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
     GameObject bullet; // ( bullet는 player가 발사하는 총알 Prefab )
 
-    [SerializeField] int force = 5; // ( bullet에 가할 스피드 )
-    [SerializeField] private float coolTime = 1.0f;
+    //// Coroutine Caching
+    //private IEnumerator ItemCoolTime;
+    //private WaitForFixedUpdate fixedUpdate = new WaitForFixedUpdate();
+
+    // Basic Value
+    [SerializeField] protected float force = 5;
+    [SerializeField] protected float coolTime = 1.0f;
+    [SerializeField] protected int bulltCount = 1;
+
+    protected bool ItemCheck = true;
 
     private bool coolTimeCheck = true;
+
 
     private void Awake()
     {
@@ -39,12 +57,33 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void RecallBullet()
     {
-        GameObject playerBullet = Instantiate(bullet);
-        playerBullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        ApplyAttck(playerBullet);
+        switch(currentItem)
+        {
+            case ItemType.Normal:
+                GameObject playerBullet = Instantiate(bullet);
+                playerBullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+                ApplyAttck(playerBullet);
+                break;
+            case ItemType.BulletUPItem:
+                GameObject playerBullet1 = Instantiate(bullet);
+                GameObject playerBullet2 = Instantiate(bullet);
+                playerBullet1.transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.4f, transform.position.z);
+                playerBullet2.transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.4f, transform.position.z);
+                ApplyAttck(playerBullet1);
+                ApplyAttck(playerBullet2);
+                break;
+            case ItemType.PenetrateItem:
+                break;
+            case ItemType.BounceItem:
+                break;
+            case ItemType.GuidedMissileItem:
+                break;
+            default:
+                break;
+        }
     }
 
-    private void ApplyAttck(GameObject obj)
+    private void ApplyAttck(GameObject obj) 
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
         bulletRigid.AddForce(transform.up * this.force, ForceMode2D.Impulse);
@@ -65,5 +104,21 @@ public class PlayerAttackSystem : MonoBehaviour
 
         // CoolTime Reset
         coolTimeCheck = true;
+    }
+
+    protected IEnumerator ItemTime(float time, ItemType current)
+    {
+        // Item Active Disabled
+        // ItemCheck = false;
+
+        while (time > 0.0f)
+        {
+            if (current != this.currentItem) yield break;
+            time -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        // Item Active Activate
+        // ItemCheck = true;
     }
 }

@@ -10,8 +10,11 @@ public class BulletPrefabSystem : MonoBehaviour
 
     // Bullet이 Wall(벽) 에 부딪히면 Bullet은 Destory or SetActive(false) 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.tag == "Ball" || collision.tag == "Collider")
+        {
+            Destroy(gameObject);    // 추후 오브젝트풀링
+        }
     }
 }
