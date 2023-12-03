@@ -1,43 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerAttackSystem : MonoBehaviour
+public class PlayerAttackSystem : ItemManager
 {
-    #region ItemType
-    protected enum ItemType
-    {
-        Normal,     
-        BulletUPItem,       // bullet °¹¼ö Áõ°¡
-        PenetrateItem,      // °üÅë
-        BounceItem,         // Æ¨±è
-        GuidedMissileItem   // À¯µµÅº
-    }
-    // ItemType Reset Value
-    protected ItemType currentItem = ItemType.Normal;
+    #region Example
+    //// Coroutine Caching
+    //private IEnumerator ItemCoolTime;
+    //private WaitForFixedUpdate fixedUpdate = new WaitForFixedUpdate();
     #endregion
 
-
+    #region Global_Variale
     TopDownCharacterController _controller;
 
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
     GameObject bullet; // ( bullet´Â player°¡ ¹ß»çÇÏ´Â ÃÑ¾Ë Prefab )
 
-    //// Coroutine Caching
-    //private IEnumerator ItemCoolTime;
-    //private WaitForFixedUpdate fixedUpdate = new WaitForFixedUpdate();
-
-    // Basic Value
-    [SerializeField] protected float force = 5;
-    [SerializeField] protected float coolTime = 1.0f;
-    [SerializeField] protected int bulltCount = 1;
-
-    protected bool ItemCheck = true;
-
     private bool coolTimeCheck = true;
 
+    // ItemType Reset Value
+    public ItemType currentItem;
 
+    public float itemDuration = 0f;
+    #endregion
+
+    #region Initialization_Settings
     private void Awake()
     {
         _controller = GetComponent<TopDownCharacterController>();
@@ -48,6 +37,13 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         _controller.OnAttackEvent += Attack;
     }
+    #endregion
+
+    #region Player_AttackLogic
+    private void Update()
+    {
+        BulletStateCheck();
+    }
 
     private void Attack()
     {
@@ -57,22 +53,16 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private void RecallBullet()
     {
-        switch(currentItem)
+        switch (currentItem)
         {
             case ItemType.Normal:
-                GameObject playerBullet = Instantiate(bullet);
-                playerBullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-                ApplyAttck(playerBullet);
+                ItemNormalBullet();
                 break;
             case ItemType.BulletUPItem:
-                GameObject playerBullet1 = Instantiate(bullet);
-                GameObject playerBullet2 = Instantiate(bullet);
-                playerBullet1.transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.4f, transform.position.z);
-                playerBullet2.transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.4f, transform.position.z);
-                ApplyAttck(playerBullet1);
-                ApplyAttck(playerBullet2);
+                ItemBulletCountUp();
                 break;
             case ItemType.PenetrateItem:
+                ItemBulletPenetrateItem();
                 break;
             case ItemType.BounceItem:
                 break;
@@ -83,7 +73,7 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    private void ApplyAttck(GameObject obj) 
+    private void ApplyAttck(GameObject obj)
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
         bulletRigid.AddForce(transform.up * this.force, ForceMode2D.Impulse);
@@ -105,20 +95,52 @@ public class PlayerAttackSystem : MonoBehaviour
         // CoolTime Reset
         coolTimeCheck = true;
     }
+    #endregion
 
-    protected IEnumerator ItemTime(float time, ItemType current)
+    #region BulletState
+    private void BulletStateCheck()
     {
-        // Item Active Disabled
-        // ItemCheck = false;
-
-        while (time > 0.0f)
+        if (currentItem != ItemType.Normal && itemDuration > 0f)
         {
-            if (current != this.currentItem) yield break;
-            time -= Time.deltaTime;
-            yield return new WaitForFixedUpdate();
+            itemDuration -= Time.deltaTime;
         }
-
-        // Item Active Activate
-        // ItemCheck = true;
+        if (itemDuration <= 0f && currentItem != ItemType.Normal)
+        {
+            itemDuration = 0f;
+            currentItem = ItemType.Normal;
+        }
     }
+
+    private void ItemNormalBullet()
+    {
+        GameObject playerbullet = Instantiate(bullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerbullet);
+    }
+
+    private void ItemBulletCountUp()
+    {
+        GameObject playerBullet1 = Instantiate(bullet);
+        GameObject playerBullet2 = Instantiate(bullet);
+        playerBullet1.transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.4f, transform.position.z);
+        playerBullet2.transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerBullet1);
+        ApplyAttck(playerBullet2);
+    }
+
+    private void ItemBulletPenetrateItem()
+    {
+        ItemNormalBullet();
+    }
+    #endregion
 }
+
+//public class PlayerItemBulletState : PlayerAttackSystem
+//{
+//    public void ItemNormalBullet()
+//    {
+//        GameObject playerBullet = Instantiate(bullet);
+//        playerBullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+//        ApplyAttck(playerBullet);
+//    }
+//}

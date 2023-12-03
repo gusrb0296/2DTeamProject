@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
-public class BulletCoolTimeItem : PlayerAttackSystem
+public class BulletCoolTimeItem : ItemManager
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.tag == "Player")
         {
             // Bullet CooTime Decrease
-            coolTime -= 0.05f;
+            _player = collision.gameObject.GetComponent<PlayerAttackSystem>();
+            BulletDelayLower(_player);
+            // 플레이어 사망시 초기화 필요.
+
+            Destroy(gameObject);    // 추후 오브젝트 풀링 
         }
     }
 }
