@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
-    [SerializeField] private SpriteRenderer _spritexplosion;
     PlayerInputController _controller;
 
     private void Awake()
@@ -14,7 +14,7 @@ public class AnimationController : MonoBehaviour
     }
     private void Start()
     {
-        _controller.OnMoveEvent += AnimState;
+        _controller.OnMoveEvent += AnimRun;
     }
     private void Update()
     {
@@ -32,10 +32,11 @@ public class AnimationController : MonoBehaviour
         //    _anim.ResetTrigger("JumpBack");
         //}
     }
-    private void AnimState(Vector2 direction)
+    private void AnimRun(Vector2 direction)
     {
+        Debug.Log(direction);
         if (direction.x > 0)
-        {
+        {         
             _anim.SetBool("RightRun", true);
             _anim.SetBool("LeftRun", false);
         }
@@ -48,17 +49,6 @@ public class AnimationController : MonoBehaviour
         {
             _anim.SetBool("RightRun", false);
             _anim.SetBool("LeftRun", false);
-        }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            _anim.SetTrigger("Attack");
-            StartCoroutine(ShowAndHide(_spritexplosion, 0.1f));
-        }
-        IEnumerator ShowAndHide(SpriteRenderer sprite, float delay)
-        {
-            sprite.enabled = true;
-            yield return new WaitForSeconds(delay);
-            sprite.enabled = false;
         }
     }
 }
