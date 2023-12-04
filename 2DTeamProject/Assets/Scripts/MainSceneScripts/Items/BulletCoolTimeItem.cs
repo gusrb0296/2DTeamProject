@@ -7,8 +7,7 @@ public class BulletCoolTimeItem : ItemManager
         if (collision.tag == "Player")
         {
             // Bullet CooTime Decrease
-            _player = collision.gameObject.GetComponent<PlayerAttackSystem>();
-            BulletDelayLower(_player);
+            BulletDelayLower();
             // 플레이어 사망시 초기화 필요.
 
             Destroy(gameObject);    // 추후 오브젝트 풀링 

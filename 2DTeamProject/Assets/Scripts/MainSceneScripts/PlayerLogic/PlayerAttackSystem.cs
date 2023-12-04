@@ -17,6 +17,8 @@ public class PlayerAttackSystem : ItemManager
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
     GameObject bullet; // ( bullet는 player가 발사하는 총알 Prefab )
+    GameObject PenetrateItemBullet;
+    GameObject bounceBullet;
 
     private bool coolTimeCheck = true;
 
@@ -31,6 +33,8 @@ public class PlayerAttackSystem : ItemManager
     {
         _controller = GetComponent<TopDownCharacterController>();
         bullet = Resources.Load<GameObject>("Prefabs/Bullet");
+        PenetrateItemBullet = Resources.Load<GameObject>("Prefabs/PenetrateItemBullet");
+        bounceBullet = Resources.Load<GameObject>("Prefabs/BounceBullet");
     }
 
     private void Start()
@@ -65,6 +69,7 @@ public class PlayerAttackSystem : ItemManager
                 ItemBulletPenetrateItem();
                 break;
             case ItemType.BounceItem:
+                ItemBulletBounce();
                 break;
             case ItemType.GuidedMissileItem:
                 break;
@@ -76,7 +81,7 @@ public class PlayerAttackSystem : ItemManager
     private void ApplyAttck(GameObject obj)
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
-        bulletRigid.AddForce(transform.up * this.force, ForceMode2D.Impulse);
+        bulletRigid.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
     private IEnumerator CollTime(float time)
@@ -98,19 +103,6 @@ public class PlayerAttackSystem : ItemManager
     #endregion
 
     #region BulletState
-    private void BulletStateCheck()
-    {
-        if (currentItem != ItemType.Normal && itemDuration > 0f)
-        {
-            itemDuration -= Time.deltaTime;
-        }
-        if (itemDuration <= 0f && currentItem != ItemType.Normal)
-        {
-            itemDuration = 0f;
-            currentItem = ItemType.Normal;
-        }
-    }
-
     private void ItemNormalBullet()
     {
         GameObject playerbullet = Instantiate(bullet);
@@ -130,9 +122,31 @@ public class PlayerAttackSystem : ItemManager
 
     private void ItemBulletPenetrateItem()
     {
-        ItemNormalBullet();
+        GameObject playerbullet = Instantiate(PenetrateItemBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerbullet);
+    }
+
+    private void ItemBulletBounce()
+    {
+        GameObject playerbullet = Instantiate(bounceBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerbullet);
     }
     #endregion
+
+    private void BulletStateCheck()
+    {
+        if (currentItem != ItemType.Normal && itemDuration > 0f)
+        {
+            itemDuration -= Time.deltaTime;
+        }
+        if (itemDuration <= 0f && currentItem != ItemType.Normal)
+        {
+            itemDuration = 0f;
+            currentItem = ItemType.Normal;
+        }
+    }
 }
 
 //public class PlayerItemBulletState : PlayerAttackSystem

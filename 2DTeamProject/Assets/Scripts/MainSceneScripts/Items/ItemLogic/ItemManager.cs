@@ -24,33 +24,54 @@ public class ItemManager : MonoBehaviour
     [SerializeField] protected float coolTime = 1.0f;
     #endregion
 
-    #region Continuation_Item
-    protected void BulletDelayLower(PlayerAttackSystem player)
+    private void Awake()
     {
-        player.coolTime -= 0.05f;
+        _player = FindObjectOfType<PlayerAttackSystem>();
     }
 
-    protected void BulletSpeedUp(PlayerAttackSystem player)
+    #region Continuation_Item
+    protected void BulletDelayLower()
     {
-        player.force += 0.5f;
+        _player.coolTime -= 0.05f;
+    }
+
+    protected void BulletSpeedUp()
+    {
+        _player.force += 0.5f;
     }
     #endregion
 
     #region OneTime_Item
-    protected void BulletCountUpItem(PlayerAttackSystem player)
+    protected void BulletCountUpItem()
     {
-        _player.itemDuration = 0f;
-        _player.itemDuration = 5.0f;
+        BulletStateReset(_player);
         _player.currentItem = ItemType.BulletUPItem;
     }
 
-    protected void BulletPenetrateItem(PlayerAttackSystem player)
+    protected void BulletPenetrateItem()
     {
-        _player.itemDuration = 0f;
-        _player.itemDuration = 5;
+        BulletStateReset(_player);
         _player.currentItem = ItemType.PenetrateItem;
     }
+
+    protected void BulletBounceItem()
+    {
+        BulletStateReset(_player);
+        _player.currentItem = ItemType.BounceItem;
+    }
+
+    protected void BulletGuidedMissileItem()
+    {
+        BulletStateReset(_player);
+        _player.currentItem = ItemType.GuidedMissileItem;
+    }
     #endregion
+
+    private void BulletStateReset(PlayerAttackSystem player)
+    {
+        player.itemDuration = 0f;
+        player.itemDuration = 5;
+    }
 
 
     /*
