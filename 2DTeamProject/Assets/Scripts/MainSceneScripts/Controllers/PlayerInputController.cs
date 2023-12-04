@@ -5,11 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : TopDownCharacterController
 {
+    private Vector2 moveInput;
+    public void Update()
+    {
+        CallMoveEvent(moveInput);
+    }
     public void OnMove(InputValue value)
     {
-        Vector2 moveInput = value.Get<Vector2>();
-        
-        CallMoveEvent(moveInput);
+        moveInput = value.Get<Vector2>();
     }
 
     public void OnAttack(InputValue value)
@@ -19,4 +22,9 @@ public class PlayerInputController : TopDownCharacterController
                 CallAttackEvent();
             }
         }
+
+    public void OnJump()
+    {
+        //
+    }
 }

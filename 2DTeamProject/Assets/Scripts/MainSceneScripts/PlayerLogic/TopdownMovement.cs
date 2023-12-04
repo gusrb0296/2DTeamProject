@@ -28,23 +28,10 @@ public class TopdownMovement : MonoBehaviour
         direction = direction * 5;
         _rigidbody.velocity = direction;
     }
-
     private void FixedUpdate()
     {
         ApplyMovent(_movementDirection);
-        LookRotate();
         CollisionWithWall();
-    }
-    private void LookRotate()
-    {
-        if (_movementDirection.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (_movementDirection.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
     }
     private void CollisionWithWall()
     {
