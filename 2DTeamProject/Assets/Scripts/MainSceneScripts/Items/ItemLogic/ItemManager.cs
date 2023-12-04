@@ -17,11 +17,14 @@ public class ItemManager : MonoBehaviour
     #endregion
 
     #region Global_Variale
-    protected PlayerAttackSystem _player;
+    public PlayerAttackSystem _player;
 
     // Basic Value
-    [SerializeField] protected float force = 5;
+    [SerializeField] protected float force = 5f;
     [SerializeField] protected float coolTime = 1.0f;
+
+    public float Force { get { return force; } set {  force = value; } }
+    public float CoolTime {  get {  return coolTime; } set {  coolTime = value; } }
     #endregion
 
     private void Awake()
@@ -32,12 +35,12 @@ public class ItemManager : MonoBehaviour
     #region Continuation_Item
     protected void BulletDelayLower()
     {
-        _player.coolTime -= 0.05f;
+        coolTime -= 0.05f;
     }
 
     protected void BulletSpeedUp()
     {
-        _player.force += 0.5f;
+        force += 0.5f;
     }
     #endregion
 

@@ -28,7 +28,7 @@ public class BounceBulletPrefabLogic : ItemManager
                 Vector3 tmps = transform.eulerAngles;
                 tmps.z = arrAngles[randomAngle];
                 transform.eulerAngles = tmps;
-                _rigid.AddForce(transform.up * force, ForceMode2D.Impulse);
+                _rigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
                 firstWallCheck = false;
             }
             else
@@ -38,7 +38,7 @@ public class BounceBulletPrefabLogic : ItemManager
                 tmp.z = _Radian - tmp.z;
                 transform.eulerAngles = tmp;
                 // Bounce After AddForce
-                _rigid.AddForce(transform.up * force, ForceMode2D.Impulse);
+                _rigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
             }
         }
         else if (collision.collider.CompareTag("Wall"))
@@ -46,7 +46,7 @@ public class BounceBulletPrefabLogic : ItemManager
             Vector3 tmp = transform.eulerAngles;
             tmp.z = (_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-            _rigid.AddForce(transform.up * force, ForceMode2D.Impulse);
+            _rigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
         }
         bulletLifeCount++;
 

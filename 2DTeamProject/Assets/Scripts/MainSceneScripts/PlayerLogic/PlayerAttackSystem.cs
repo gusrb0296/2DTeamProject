@@ -19,6 +19,7 @@ public class PlayerAttackSystem : ItemManager
     GameObject bullet; // ( bullet는 player가 발사하는 총알 Prefab )
     GameObject PenetrateItemBullet;
     GameObject bounceBullet;
+    GameObject guidedMissileBullet;
 
     private bool coolTimeCheck = true;
 
@@ -35,6 +36,8 @@ public class PlayerAttackSystem : ItemManager
         bullet = Resources.Load<GameObject>("Prefabs/Bullet");
         PenetrateItemBullet = Resources.Load<GameObject>("Prefabs/PenetrateItemBullet");
         bounceBullet = Resources.Load<GameObject>("Prefabs/BounceBullet");
+        guidedMissileBullet = Resources.Load<GameObject>("Prefabs/GuidedMissileBullet");
+
     }
 
     private void Start()
@@ -52,7 +55,7 @@ public class PlayerAttackSystem : ItemManager
     private void Attack()
     {
         // CoolTime Check
-        if (coolTimeCheck == true) StartCoroutine(CollTime(coolTime));
+        if (coolTimeCheck == true) StartCoroutine(CollTime(CoolTime));
     }
 
     private void RecallBullet()
@@ -72,6 +75,7 @@ public class PlayerAttackSystem : ItemManager
                 ItemBulletBounce();
                 break;
             case ItemType.GuidedMissileItem:
+                ItemBulletGuidedMissile();
                 break;
             default:
                 break;
@@ -81,7 +85,7 @@ public class PlayerAttackSystem : ItemManager
     private void ApplyAttck(GameObject obj)
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
-        bulletRigid.AddForce(transform.up * force, ForceMode2D.Impulse);
+        bulletRigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
     }
 
     private IEnumerator CollTime(float time)
@@ -132,6 +136,12 @@ public class PlayerAttackSystem : ItemManager
         GameObject playerbullet = Instantiate(bounceBullet);
         playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
         ApplyAttck(playerbullet);
+    }
+
+    private void ItemBulletGuidedMissile()
+    {
+        GameObject playerbullet = Instantiate(guidedMissileBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
     }
     #endregion
 
