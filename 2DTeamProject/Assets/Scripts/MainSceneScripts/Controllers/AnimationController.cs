@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
+    [SerializeField] private SpriteRenderer _sprite;
     PlayerInputController _controller;
 
     private void Awake()
     {
         _controller = GetComponent<PlayerInputController>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
@@ -18,6 +20,7 @@ public class AnimationController : MonoBehaviour
     }
     private void Update()
     {
+        
         //if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Left_Jump") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         ////GetCurrentAnimatorStateInfo(0).normalizedTime은 현재 애니메이션 클립이 얼마나 재생되었는지를 나타내는 값을 반환
         //{
@@ -34,21 +37,7 @@ public class AnimationController : MonoBehaviour
     }
     private void AnimRun(Vector2 direction)
     {
-        Debug.Log(direction);
-        if (direction.x > 0)
-        {         
-            _anim.SetBool("RightRun", true);
-            _anim.SetBool("LeftRun", false);
-        }
-        if (direction.x < 0)
-        {
-            _anim.SetBool("RightRun", false);
-            _anim.SetBool("LeftRun", true);
-        }
-        if (direction.x == 0)
-        {
-            _anim.SetBool("RightRun", false);
-            _anim.SetBool("LeftRun", false);
-        }
+        _anim.SetFloat("IsRun", direction.magnitude);
+        transform.rotation = new Quaternion(0, direction.x > 0 ? 180 : 0, 0, 0);
     }
 }
