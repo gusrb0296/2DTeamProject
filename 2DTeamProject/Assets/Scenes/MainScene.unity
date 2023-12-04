@@ -2509,6 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfee19752b9e92a479d46f9468454592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   force: 5
   coolTime: 1
 --- !u!114 &888364938
@@ -5807,7 +5808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BallPrefabs: {fileID: 8788740324548779844, guid: 73473b6dbe23d5b4eb065d2d8219f361, type: 3}
-  _GameLevelIndex: 0
 --- !u!4 &1914497228
 Transform:
   m_ObjectHideFlags: 0
@@ -6268,6 +6268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d583a73323e5b4693434e3535bc9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   force: 5
   coolTime: 1
   currentItem: 0
