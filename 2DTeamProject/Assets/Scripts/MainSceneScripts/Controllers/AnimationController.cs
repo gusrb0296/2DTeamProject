@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _spritexplosion;
     PlayerInputController _controller;
 
     private void Awake()
@@ -48,6 +48,17 @@ public class AnimationController : MonoBehaviour
         {
             _anim.SetBool("RightRun", false);
             _anim.SetBool("LeftRun", false);
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _anim.SetTrigger("Attack");
+            StartCoroutine(ShowAndHide(_spritexplosion, 0.1f));
+        }
+        IEnumerator ShowAndHide(SpriteRenderer sprite, float delay)
+        {
+            sprite.enabled = true;
+            yield return new WaitForSeconds(delay);
+            sprite.enabled = false;
         }
     }
 }
