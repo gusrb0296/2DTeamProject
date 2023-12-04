@@ -14,6 +14,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] private Button _gameSettingBtn;
     [SerializeField] private Button _startBtn;
     [SerializeField] private Button _closeBtn;
+    [SerializeField] private Button _LevelBtn;
     [SerializeField] private Button _easyBtn;
     [SerializeField] private Button _normalBtn;
     [SerializeField] private Button _hardBtn;
@@ -34,12 +35,13 @@ public class StartManager : MonoBehaviour
         Button _guideOpenBtn = _Guide.transform.parent.GetComponent<Button>();
 
 
-        _startBtn.onClick.AddListener(() => { LevelWindow(); _btnSource.Play(); });
+        _startBtn.onClick.AddListener(() => { LevelWindow(true); _btnSource.Play(); });
         _closeBtn.onClick.AddListener(() => { SettingWindow(false); _btnSource.Play(); });
         _gameSettingBtn.onClick.AddListener(() => { SettingWindow(true); _btnSource.Play(); });
-        _easyBtn.onClick.AddListener(() => LoadScene(0));
-        _normalBtn.onClick.AddListener(() => LoadScene(1));
-        _hardBtn.onClick.AddListener(() => LoadScene(2));
+        _LevelBtn.onClick.AddListener(() => { LevelWindow(false); _btnSource.Play(); });
+        _easyBtn.onClick.AddListener(() => LoadScene(1));
+        _normalBtn.onClick.AddListener(() => LoadScene(2));
+        _hardBtn.onClick.AddListener(() => LoadScene(3));
         _muteOnBtn.onClick.AddListener(() => { MuteSystem(true, false); _btnSource.Play(); });
         _muteOffBtn.onClick.AddListener(() => { MuteSystem(false, true); _btnSource.Play(); });
         _guideOpenBtn.onClick.AddListener(() => { GuideWindow(true); _btnSource.Play(); });
@@ -71,14 +73,14 @@ public class StartManager : MonoBehaviour
     {
         _Canvas.transform.Find("SettingBackGround").gameObject.SetActive(istrue);
     }
-    private void LevelWindow()
+    private void LevelWindow(bool istrue)
     {
-        _Canvas.transform.Find("LevelBackGround ").gameObject.SetActive(true);
+        _Canvas.transform.Find("LevelBackGround ").gameObject.SetActive(istrue);
     }
     private void LoadScene(int index)
     {
+        PlayerPrefs.SetInt("GameLevel", index);
         SceneManager.LoadScene("MainScene");
-        //게임 매니져한테 index값 넘겨주면 해당하는 Enum값 설정하게
     }
     private void EndGame()
     {
