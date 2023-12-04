@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPrefabSystem : MonoBehaviour
+public class BulletPrefabSystem : ItemManager
 {
     // Bullet이 Ball(공)에 부딪힐때 로직
     // 공은 파괴 or 데미지를 준다.
@@ -12,7 +10,15 @@ public class BulletPrefabSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ball" || collision.tag == "Collider")
+        _player = collision.GetComponent<PlayerAttackSystem>();
+
+        // 관통아이템 상태면 벽에만 Destory
+        if (_player.currentItem == ItemType.PenetrateItem)
+        {
+            if (collision.tag == "Collider") Destroy(gameObject);
+        }
+        
+        else if (collision.tag == "Ball" || collision.tag == "Collider")
         {
             Destroy(gameObject);    // 추후 오브젝트풀링
         }
