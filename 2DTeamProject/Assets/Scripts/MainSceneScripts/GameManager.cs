@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("BallSpawn", 5, 7);
     }
 
-    public void BallPorduce() // °ø»ı¼º
+    public void BallPorduce() // ê³µìƒì„±
     {
         for (int i = 0; i < _GameLevelIndex; i++)
         {
@@ -51,5 +51,5 @@ public class GameManager : MonoBehaviour
         {
             CancelInvoke("BallSpawn");
         }
-    } //³­ÀÌµµ¿¡ µû¸¥ °ø»ı¼º °¹¼ö
+    } //ë‚œì´ë„ì— ë”°ë¥¸ ê³µìƒì„± ê°¯ìˆ˜
 }
