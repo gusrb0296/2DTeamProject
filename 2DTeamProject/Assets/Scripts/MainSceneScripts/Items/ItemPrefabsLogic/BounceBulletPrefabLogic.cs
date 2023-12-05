@@ -43,6 +43,9 @@ public class BounceBulletPrefabLogic : ItemManager
         }
         else if (collision.collider.CompareTag("Wall"))
         {
+            // byllet CoolTime Reset
+            BulletCoolTimeReset();
+
             Vector3 tmp = transform.eulerAngles;
             tmp.z = (_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
@@ -50,7 +53,13 @@ public class BounceBulletPrefabLogic : ItemManager
         }
         bulletLifeCount++;
 
-        // bullet Destory Condition ( ¿ÀºêÁ§Æ® Ç®¸µ ÇÊ¿ä )
+        if (collision.collider.CompareTag("Ball"))
+        {
+            BulletCoolTimeReset();
+            Destroy(gameObject);
+        }
+
+        // bullet Destory Condition ( ì˜¤ë¸Œì íŠ¸ í’€ë§ í•„ìš” )
         if(bulletLifeCount >= 6)
         {
             Destroy(gameObject);
