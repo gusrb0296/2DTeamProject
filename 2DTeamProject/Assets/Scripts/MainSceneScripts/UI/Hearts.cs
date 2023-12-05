@@ -1,45 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Hearts : MonoBehaviour
 {
-    public int health;
-    public int numOfHearts;
+    public int playerHealth = 10; // 0~10ê¹Œì§€ì˜ í”Œë ˆì´ì–´ í•˜íŠ¸(ì²´ë ¥)ë¥¼ ë‚˜íƒ€ëƒ„
+    private int maxHealth = 10; // í•˜íŠ¸ë¥¼ ëª¨ë‘ ì–»ì„ ìˆ˜ ìžˆëŠ” ìµœê³  ì²´ë ¥
 
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public GameObject[] hearts;
+    public GameObject[] halfHearts;
+    public GameObject[] blackHearts;
+
 
     void Update()
     {
-        // health°¡ numOfHeartsº¸´Ù Å©°Ô ¼³Á¤ÇÒ °æ¿ì
-        if (health > numOfHearts)
+        // playerHealthê°€ maxHealthë³´ë‹¤ í¬ê²Œ ì„¤ì •í•  ê²½ìš°
+        if (playerHealth > maxHealth)
         {
-            health = numOfHearts;
+            playerHealth = maxHealth;
         }
 
-
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = maxHealth; i > 0; i--)
         {
-            // ²Ë Âù ÇÏÆ®¿Í ºó ÇÏÆ® Ç¥½Ã
-            if (i < health)
+            if (i % 2 == 0)
             {
-                hearts[i].sprite = fullHeart;
+                if (playerHealth < i)
+                {
+                    hearts[i / 2 - 1].SetActive(false);
+                    blackHearts[i / 2 - 1].SetActive(true);
+                    halfHearts[i / 2 - 1].SetActive(false);
+                }
+                else
+                {
+                    hearts[i / 2 - 1].SetActive(true);
+                    blackHearts[i / 2 - 1].SetActive(false);
+                    halfHearts[i / 2 - 1].SetActive(false);
+                }
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
-            }
-
-
-            // numOfHeartsÀÇ °³¼ö¸¸Å­ Ç¥½ÃµÇ´Â ÃÑ hearts ÀÌ¹ÌÁö °³¼ö
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
+                if (playerHealth == i)
+                {
+                    halfHearts[i / 2].SetActive(true);
+                }
             }
         }
     }
