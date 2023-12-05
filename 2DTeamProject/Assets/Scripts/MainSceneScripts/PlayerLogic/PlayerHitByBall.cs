@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHitByBall : Hearts
@@ -19,9 +20,12 @@ public class PlayerHitByBall : Hearts
             // 피격 효과
             StartCoroutine(HitPlayer(_sprite, 0.1f));
 
-            // 사망 애니메이션 후 종료 판넬이나 스코어 판넬
-            // 이거는 gameover.cs를 만들어서 따로 관리하는게 좋을까요?
+            // 사망 애니메이션 후 종료 판넬
+            //ShowDieAnim();
+            //ShowFailurePanel();
         }
+
+
     }
     IEnumerator HitPlayer(SpriteRenderer sprite, float delay)
     {
