@@ -43,7 +43,7 @@ public class Hearts : MonoBehaviour
             }
         }
     }
-    protected void DecreaseHealth(int amount)
+    public void DecreaseHealth(int amount)
     {
         health -= amount;
     }

@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerHitByBall : Hearts
+public class PlayerHitByBall : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _sprite;
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
     }
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Ball") // 볼중에서 큰 공 / 미들 공 / 작은 공 : 태그수정필요
         {
-            // 하트 감소
-            DecreaseHealth(1);
-
             // 피격 효과
             StartCoroutine(HitPlayer(_sprite, 0.1f));
 
@@ -24,8 +21,6 @@ public class PlayerHitByBall : Hearts
             //ShowDieAnim();
             //ShowFailurePanel();
         }
-
-
     }
     IEnumerator HitPlayer(SpriteRenderer sprite, float delay)
     {
