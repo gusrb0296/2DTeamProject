@@ -16,12 +16,10 @@ public class PlayerAttackSystem : ItemManager
 
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
-    GameObject bullet; // ( bullet¥¬ player∞° πﬂªÁ«œ¥¬ √—æÀ Prefab )
+    GameObject bullet; // ( bulletÎäî playerÍ∞Ä Î∞úÏÇ¨ÌïòÎäî Ï¥ùÏïå Prefab )
     GameObject PenetrateItemBullet;
     GameObject bounceBullet;
     GameObject guidedMissileBullet;
-
-    private bool coolTimeCheck = true;
 
     // ItemType Reset Value
     public ItemType currentItem;
@@ -55,7 +53,7 @@ public class PlayerAttackSystem : ItemManager
     private void Attack()
     {
         // CoolTime Check
-        if (coolTimeCheck == true) StartCoroutine(CollTime(CoolTime));
+        if (CoolTimeCheck == true) StartCoroutine(CollTime(CoolTime));
     }
 
     private void RecallBullet()
@@ -91,7 +89,7 @@ public class PlayerAttackSystem : ItemManager
     private IEnumerator CollTime(float time)
     {
         // CoolTime Setting
-        coolTimeCheck = false;
+        CoolTimeCheck = false;
 
         RecallBullet();
 
@@ -102,7 +100,7 @@ public class PlayerAttackSystem : ItemManager
         }
 
         // CoolTime Reset
-        coolTimeCheck = true;
+        CoolTimeCheck = true;
     }
     #endregion
 
