@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject _clearPanel;
+    public GameObject _gameoverPanel;
     public Sprite[] Backgroundsprites;
     public Image BackgroundPanel;
 
@@ -12,11 +14,17 @@ public class UIManager : MonoBehaviour
     {
         BackgroundPanel.sprite = Backgroundsprites[PlayerPrefs.GetInt("GameLevel") - 1];
     }
-    private void Update()
+    public void GameOver()
     {
-        if (GameObject.FindGameObjectsWithTag("Ball") == null)
+        if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
         {
-            Debug.Log("게임 클리어");
+            Time.timeScale = 0;
+            _clearPanel.gameObject.SetActive(true);
         }
+        //else if ()
+        //{
+        //    Time.timeScale = 0;
+        //    _gameoverPanel.gameObject.SetActive(true);
+        //}
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject _BallPrefabs;
+    public UIManager _uiManager;
 
     int _GameLevelIndex;
     int _ballCount;
@@ -25,6 +26,10 @@ public class GameManager : MonoBehaviour
     {
         BallPorduce();
         InvokeRepeating("BallSpawn", 5, 7);
+    }
+    private void Update()
+    {
+        _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
     }
 
     public void BallPorduce() // 공생성
@@ -52,4 +57,5 @@ public class GameManager : MonoBehaviour
             CancelInvoke("BallSpawn");
         }
     } //난이도에 따른 공생성 갯수
+
 }

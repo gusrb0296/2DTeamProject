@@ -3507,6 +3507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590bc39b861bf0542add820de9aa527c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clearPanel: {fileID: 24485395}
+  _gameoverPanel: {fileID: 1995200293}
   Backgroundsprites:
   - {fileID: 21300000, guid: 7834a29dd1fe8504aaadcb9dda0e745a, type: 3}
   - {fileID: 21300000, guid: 8f24c4e8dce9cbc43b5a851af09b1d76, type: 3}
@@ -6036,6 +6038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BallPrefabs: {fileID: 8788740324548779844, guid: 73473b6dbe23d5b4eb065d2d8219f361, type: 3}
+  _uiManager: {fileID: 1154262379}
 --- !u!4 &1914497228
 Transform:
   m_ObjectHideFlags: 0
