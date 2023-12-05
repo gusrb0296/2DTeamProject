@@ -74,12 +74,22 @@ public class BounceBall : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("공에 총알이 맞았습니다.");
+            BallHitted();
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDestroy()
     {
         int RandomPercent = Random.Range(0, 5);
         if (RandomPercent == 1)
         {
-            int RandomIndex = Random.Range(0, 6);
+            int RandomIndex = Random.Range(0, 5);
             Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
         }
     }

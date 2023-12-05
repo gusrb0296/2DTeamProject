@@ -69,12 +69,12 @@ public class BounceBulletPrefabLogic : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Ball")
-        {
-            _itemManager.BulletCoolTimeReset();
-            Destroy(gameObject);
-        }
-    }
+    //private void ontriggerenter2d(collider2d collision)
+    //{
+    //    if (collision.tag == "ball")
+    //    {
+    //        _itemmanager.bulletcooltimereset();
+    //        destroy(gameobject);
+    //    }
+    //}
 }
