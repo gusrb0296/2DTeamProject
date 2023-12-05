@@ -4,15 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TopWall
-  - Wall
+  - Collider
   - Ball
-  - BottomWall
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Balls
   - Water
   - UI
   - 
