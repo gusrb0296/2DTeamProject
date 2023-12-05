@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject _BallPrefabs;
     public UIManager _uiManager;
 
+    public float _time; //시간저장
+
     int _GameLevelIndex;
     int _ballCount;
 
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+        Time.timeScale = 1;
         _GameLevelIndex = PlayerPrefs.GetInt("GameLevel");
     }
 
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
+        _time += Time.deltaTime;
     }
 
     public void BallPorduce() // 공생성
@@ -57,5 +61,4 @@ public class GameManager : MonoBehaviour
             CancelInvoke("BallSpawn");
         }
     } //난이도에 따른 공생성 갯수
-
 }

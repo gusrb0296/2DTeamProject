@@ -2181,6 +2181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clearPanel: {fileID: 24485395}
   _gameoverPanel: {fileID: 1995200293}
+  _clearScore: {fileID: 1896656383}
+  _gameoverScore: {fileID: 1541331300}
   Backgroundsprites:
   - {fileID: 21300000, guid: edc45481e0e939747ac34e3b430344b8, type: 3}
   - {fileID: 21300000, guid: 8f24c4e8dce9cbc43b5a851af09b1d76, type: 3}
@@ -5540,6 +5542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _BallPrefabs: {fileID: 8788740324548779844, guid: 73473b6dbe23d5b4eb065d2d8219f361, type: 3}
   _uiManager: {fileID: 643224673}
+  _time: 0
 --- !u!4 &1914497228
 Transform:
   m_ObjectHideFlags: 0
