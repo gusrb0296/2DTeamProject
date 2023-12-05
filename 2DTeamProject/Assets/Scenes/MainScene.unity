@@ -3270,9 +3270,7 @@ GameObject:
   - component: {fileID: 888364941}
   - component: {fileID: 888364940}
   - component: {fileID: 888364939}
-  - component: {fileID: 888364938}
-  - component: {fileID: 888364937}
-  - component: {fileID: 888364943}
+  - component: {fileID: 888364945}
   m_Layer: 0
   m_Name: Item_BulletIncrease
   m_TagString: Untagged
@@ -3280,30 +3278,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &888364937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888364936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfee19752b9e92a479d46f9468454592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &888364938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888364936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0b1f8df8da35d49ac2e64b6ff5eb83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &888364939
 Rigidbody2D:
   serializedVersion: 4
@@ -3433,7 +3407,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888364943
+--- !u!114 &888364945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3442,7 +3416,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 888364936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54846007911e708459ee5b6e9b577466, type: 3}
+  m_Script: {fileID: 11500000, guid: c416e3ccc5b87b849a2fa26b10d9fed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &889611296

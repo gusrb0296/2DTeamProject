@@ -28,7 +28,7 @@ public class ItemFall : MonoBehaviour
     {
         if (transform.position.y <= -4.3f)
         {
-            rigid.constraints = (RigidbodyConstraints2D)RigidbodyConstraints.FreezeAll;
+            rigid.constraints = RigidbodyConstraints2D.FreezeAll;
             timer -= Time.deltaTime;
 
             if (timer <= 0 && filckerCheck == true)
