@@ -12,9 +12,14 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI _gameoverScore;
     public Sprite[] Backgroundsprites;
     public Image BackgroundPanel;
+    private Hearts _heart;
 
     string scoreText = "";
 
+    private void Start()
+    {
+        _heart = GameObject.Find("Player").GetComponent<Hearts>();
+    }
     private void Awake()
     {
         BackgroundPanel.sprite = Backgroundsprites[PlayerPrefs.GetInt("GameLevel") - 1];
@@ -27,11 +32,11 @@ public class UIManager : MonoBehaviour
             GameScore();
             _clearPanel.gameObject.SetActive(true);
         }
-        //else if ()
-        //{
-        //    Time.timeScale = 0;
-        //    _gameoverPanel.gameObject.SetActive(true);
-        //}
+        else if (_heart.playerHealth <= 0)
+        {
+            Time.timeScale = 0;
+            _gameoverPanel.gameObject.SetActive(true);
+        }
     }
     public void GameScore()
     {

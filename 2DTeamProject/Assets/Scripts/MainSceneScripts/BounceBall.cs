@@ -67,7 +67,7 @@ public class BounceBall : MonoBehaviour
         {
 
             _heart.DecreaseHealth(_ballDamage); // 체력 감소
-            if (_heart.health <= 0)
+            if (_heart.playerHealth <= 0)
                 _anim.SetTrigger("Death");
 
             Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
