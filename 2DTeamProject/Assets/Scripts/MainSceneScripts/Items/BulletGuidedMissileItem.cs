@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletGuidedMissileItem : ItemManager
+public class BulletGuidedMissileItem : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             // GuidedMissileItem Bounce
-            BulletGuidedMissileItem();
+            _itemManager.BulletGuidedMissileItem();
 
-            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ
+            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§
         }
     }
 }

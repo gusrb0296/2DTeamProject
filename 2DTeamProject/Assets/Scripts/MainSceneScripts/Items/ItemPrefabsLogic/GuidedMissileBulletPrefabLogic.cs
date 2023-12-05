@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedMissileBulletPrefabLogic : ItemManager
+public class GuidedMissileBulletPrefabLogic : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
     List<GameObject> Balls;
 
     GameObject LockOnTarget;
@@ -13,6 +15,7 @@ public class GuidedMissileBulletPrefabLogic : ItemManager
     // LockOn Setting
     private void Awake()
     {
+        _itemManager = FindObjectOfType<PlayerItemState>();
         Balls = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ball"));
         nearDis = Vector3.Distance(gameObject.transform.position, Balls[0].transform.position);
     }
@@ -33,20 +36,19 @@ public class GuidedMissileBulletPrefabLogic : ItemManager
                 LockOnTarget = index;
             }
         }
-        Debug.Log(LockOnTarget);
     }
 
     // LockOn Target Attack
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.transform.position, Force * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.transform.position, _itemManager._player.Force * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Ball") || collision.collider.CompareTag("Wall") || collision.collider.CompareTag("TopWall"))
+        if (collision.tag == "Ball" || collision.tag == "Wall" || collision.tag == "TopWall")
         {
-            BulletCoolTimeReset();
+            _itemManager.BulletCoolTimeReset();
             Destroy(gameObject);    // 추후 오브젝트 풀링
         }
     }

@@ -1,18 +1,19 @@
 using UnityEngine;
 
-public class BulletPrefabSystem : ItemManager
+public class BulletPrefabSystem : MonoBehaviour
 {
-    // Bullet이 Ball(공)에 부딪힐때 로직
-    // 공은 파괴 or 데미지를 준다.
-    // Bullet은 Destory or SetActive(false)
+    PlayerItemState _itemManager;
 
-    // Bullet이 Wall(벽) 에 부딪히면 Bullet은 Destory or SetActive(false) 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Awake()
     {
-        if (collision.collider.CompareTag("Ball") || collision.collider.CompareTag("TopWall"))
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ball" || collision.tag == "TopWall")
         {
-            BulletCoolTimeReset();
+            _itemManager.BulletCoolTimeReset();
             Destroy(gameObject);    // 추후 오브젝트풀링
         }
     }

@@ -1,15 +1,22 @@
 using UnityEngine;
 
-public class BulletPenetrate : ItemManager
+public class BulletPenetrate : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             // Bullet Pentrate
-            BulletPenetrateItem();
+            _itemManager.BulletPenetrateItem();
 
-            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ
+            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§
         }
     }
 }
