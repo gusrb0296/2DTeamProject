@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class BulletPrefabSystem : ItemManager
 {
-    // Bulletì´ Ball(ê³µ)ì— ë¶€ë”ªíë•Œ ë¡œì§
-    // ê³µì€ íŒŒê´´ or ë°ë¯¸ì§€ë¥¼ ì¤€ë‹¤.
-    // Bulletì€ Destory or SetActive(false)
+    // BulletÀÌ Ball(°ø)¿¡ ºÎµúÈú¶§ ·ÎÁ÷
+    // °øÀº ÆÄ±« or µ¥¹ÌÁö¸¦ ÁØ´Ù.
+    // BulletÀº Destory or SetActive(false)
 
-    // Bulletì´ Wall(ë²½) ì— ë¶€ë”ªíˆë©´ Bulletì€ Destory or SetActive(false) 
+    // BulletÀÌ Wall(º®) ¿¡ ºÎµúÈ÷¸é BulletÀº Destory or SetActive(false) 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ball") || collision.collider.CompareTag("TopWall"))
         {
-            BulletCoolTimeReset();
-            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸í’€ë§
+            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ®Ç®¸µ
         }
     }
 }

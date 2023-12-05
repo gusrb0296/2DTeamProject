@@ -44,10 +44,9 @@ public class GuidedMissileBulletPrefabLogic : ItemManager
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ball") || collision.collider.CompareTag("Wall") || collision.collider.CompareTag("TopWall"))
+        if (collision.collider.CompareTag("Ball"))
         {
-            BulletCoolTimeReset();
-            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§
+            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ
         }
     }
 }
