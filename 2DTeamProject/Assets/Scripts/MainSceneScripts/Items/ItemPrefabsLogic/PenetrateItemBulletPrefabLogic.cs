@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PenetrateItemBulletPrefabLogic : ItemManager
+public class PenetrateItemBulletPrefabLogic : PlayerItemState
 {
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

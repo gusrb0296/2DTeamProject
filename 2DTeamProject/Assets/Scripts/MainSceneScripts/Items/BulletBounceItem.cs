@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class BulletBounceItem : ItemManager
+public class BulletBounceItem : PlayerItemState
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

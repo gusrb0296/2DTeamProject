@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class PlayerItemState : MonoBehaviour
 {
     #region ItemTypeEnum
     public enum ItemType
@@ -35,44 +35,44 @@ public class ItemManager : MonoBehaviour
     }
 
     #region Continuation_Item
-    protected void BulletDelayLower()
+    public void BulletDelayLower()
     {
         coolTime -= 0.05f;
     }
 
-    protected void BulletSpeedUp()
+    public void BulletSpeedUp()
     {
         force += 0.5f;
     }
     #endregion
 
     #region OneTime_Item
-    protected void BulletCountUpItem()
+    public void BulletCountUpItem()
     {
         BulletStateReset(_player);
         _player.currentItem = ItemType.BulletUPItem;
     }
 
-    protected void BulletPenetrateItem()
+    public void BulletPenetrateItem()
     {
         BulletStateReset(_player);
         _player.currentItem = ItemType.PenetrateItem;
     }
 
-    protected void BulletBounceItem()
+    public void BulletBounceItem()
     {
         BulletStateReset(_player);
         _player.currentItem = ItemType.BounceItem;
     }
 
-    protected void BulletGuidedMissileItem()
+    public void BulletGuidedMissileItem()
     {
         BulletStateReset(_player);
         _player.currentItem = ItemType.GuidedMissileItem;
     }
     #endregion
-    
-    protected void BulletCoolTimeReset()
+
+    public void BulletCoolTimeReset()
     {
         coolTimeCheck = true;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BounceBulletPrefabLogic : MonoBehaviour
 {
-    PlayerItemState _itemManager;
+     PlayerItemState _itemManager;
 
     const float _Radian = 180f;
     bool firstWallCheck = true;

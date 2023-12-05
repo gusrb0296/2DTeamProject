@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletCoolTimeItem : ItemManager
+public class BulletCoolTimeItem : PlayerItemState
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

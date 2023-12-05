@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletPrefabSystem : ItemManager
+public class BulletPrefabSystem : PlayerItemState
 {
     // Bullet이 Ball(공)에 부딪힐때 로직
     // 공은 파괴 or 데미지를 준다.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletPenetrate : ItemManager
+public class BulletPenetrate : PlayerItemState
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

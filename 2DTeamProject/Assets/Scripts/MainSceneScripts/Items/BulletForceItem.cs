@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletForceItem : ItemManager
+public class BulletForceItem : PlayerItemState
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

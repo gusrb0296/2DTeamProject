@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedMissileBulletPrefabLogic : ItemManager
+public class GuidedMissileBulletPrefabLogic : PlayerItemState
 {
     List<GameObject> Balls;
 

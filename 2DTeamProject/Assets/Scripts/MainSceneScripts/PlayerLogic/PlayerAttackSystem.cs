@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerAttackSystem : ItemManager
+public class PlayerAttackSystem : PlayerItemState
 {
     #region Example
     //// Coroutine Caching
