@@ -7,7 +7,8 @@ public class BounceBall : MonoBehaviour
     [SerializeField] private int _ballHp;
     [SerializeField] private int _ballDamage;
     [SerializeField] private float speed = 300;
-    private Hearts heart;
+    private Hearts _heart;
+    private Animator _anim;
     private Rigidbody2D _rigidbody;
 
     Rigidbody2D SmallBallRigid;
@@ -24,7 +25,8 @@ public class BounceBall : MonoBehaviour
         if (_ballHp == 3)
             RandomLaunch(this.gameObject);
 
-        heart = GameObject.Find("Player").GetComponent<Hearts>();
+        _heart = GameObject.Find("Player").GetComponent<Hearts>();
+        _anim = GameObject.Find("Player").GetComponent<Animator>();
     }
 
     // 왼쪽, 오른쪽 랜덤한 값을 받아 해당 방향으로 Speed만큼 곱한 속도로 이동
@@ -60,11 +62,11 @@ public class BounceBall : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            heart.DecreaseHealth(_ballDamage);
+            _heart.DecreaseHealth(_ballDamage); // 체력 감소
+            if (_heart.health <= 0)
+                _anim.SetTrigger("Death");
             Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
         }
-
-        
     }
     private void BallHitted()
     {

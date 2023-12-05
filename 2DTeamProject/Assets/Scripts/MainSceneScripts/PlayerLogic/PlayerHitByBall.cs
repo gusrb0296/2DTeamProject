@@ -12,15 +12,8 @@ public class PlayerHitByBall : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Ball") // 볼중에서 큰 공 / 미들 공 / 작은 공 : 태그수정필요
-        {
-            // 피격 효과
-            StartCoroutine(HitPlayer(_sprite, 0.1f));
-
-            // 사망 애니메이션 후 종료 판넬
-            //ShowDieAnim();
-            //ShowFailurePanel();
-        }
+        if (coll.gameObject.tag == "Ball")
+            StartCoroutine(HitPlayer(_sprite, 0.1f)); // 피격 효과
     }
     IEnumerator HitPlayer(SpriteRenderer sprite, float delay)
     {
