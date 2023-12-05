@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1480140975058056728}
   m_Layer: 0
   m_Name: PenetrateItemBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,3 +164,4 @@ MonoBehaviour:
   _player: {fileID: 0}
   force: 5
   coolTime: 1
+  coolTimeCheck: 1

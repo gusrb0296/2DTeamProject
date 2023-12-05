@@ -12,6 +12,7 @@ public class BounceBall : MonoBehaviour
     Rigidbody2D SmallBallRigid;
 
     public List<GameObject> BallList;
+    public List<GameObject> RewardItemList;
 
     private void Awake()
     {
@@ -51,7 +52,6 @@ public class BounceBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Destroy(collision.gameObject);  // 총알 삭제
             Debug.Log("공에 총알이 맞았습니다.");
             BallHitted();
             Destroy(gameObject);
@@ -60,9 +60,18 @@ public class BounceBall : MonoBehaviour
         {
             Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
         }
-
-        
     }
+
+    private void OnDestroy()
+    {
+        int RandomPercent = Random.Range(0, 5);
+        if (RandomPercent == 1)
+        {
+            int RandomIndex = Random.Range(0, 6);
+            Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
+        }
+    }
+
     private void BallHitted()
     {
         if (_ballHp == 3)
