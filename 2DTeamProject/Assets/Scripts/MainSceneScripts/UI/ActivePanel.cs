@@ -15,13 +15,13 @@ public class ActivePanel : MonoBehaviour
 
     private void ActivatePanel()
     {
-        Time.timeScale = 0.0f;
         panel.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     private void DeactivatePanel()
     {
-        Time.timeScale = 1.0f;
         panel.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }

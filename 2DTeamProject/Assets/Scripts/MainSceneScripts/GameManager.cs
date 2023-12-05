@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject _BallPrefabs;
-    public UIManager _uiManager;
 
     int _GameLevelIndex;
     int _ballCount;
@@ -27,12 +26,8 @@ public class GameManager : MonoBehaviour
         BallPorduce();
         InvokeRepeating("BallSpawn", 5, 7);
     }
-    private void Update()
-    {
-        _uiManager.GameOver(); //updateë¬¸ì—ë‹¤ ì‚¬ìš©ì‹œ ë„ˆë¬´ ë‚­ë¹„ë˜ë‹ˆê¹ ê³µí”¼ê²©ì‹œë¡œ ì˜®ê¸°ê¸°
-    }
 
-    public void BallPorduce() // ê³µìƒì„±
+    public void BallPorduce() // °ø»ı¼º
     {
         for (int i = 0; i < _GameLevelIndex; i++)
         {
@@ -56,6 +51,5 @@ public class GameManager : MonoBehaviour
         {
             CancelInvoke("BallSpawn");
         }
-    } //ë‚œì´ë„ì— ë”°ë¥¸ ê³µìƒì„± ê°¯ìˆ˜
-
+    } //³­ÀÌµµ¿¡ µû¸¥ °ø»ı¼º °¹¼ö
 }
