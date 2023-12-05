@@ -1,16 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BounceBall : MonoBehaviour
 {
-    public int _ballHp;
+    [SerializeField] private int _ballHp;
+    [SerializeField] private int _ballDamage;
     [SerializeField] private float speed = 300;
+
+    private Hearts _heart;
+    private Animator _anim;
+
     private Rigidbody2D _rigidbody;
 
     Rigidbody2D SmallBallRigid;
 
     public List<GameObject> BallList;
+    public List<GameObject> RewardItemList;
 
     private void Awake()
     {
@@ -21,6 +27,9 @@ public class BounceBall : MonoBehaviour
     {
         if (_ballHp == 3)
             RandomLaunch(this.gameObject);
+
+        _heart = GameObject.Find("Player").GetComponent<Hearts>();
+        _anim = GameObject.Find("Player").GetComponent<Animator>();
 
     }
 
@@ -50,12 +59,31 @@ public class BounceBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Destroy(collision.gameObject);  // 총알 삭제
-            Debug.Log("맞았습니다.");
+            Debug.Log("공에 총알이 맞았습니다.");
             BallHitted();
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Player")
+        {
+
+            _heart.DecreaseHealth(_ballDamage); // 체력 감소
+            if (_heart.playerHealth <= 0)
+                _anim.SetTrigger("Death");
+
+            Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
+        }
     }
+
+    private void OnDestroy()
+    {
+        int RandomPercent = Random.Range(0, 5);
+        if (RandomPercent == 1)
+        {
+            int RandomIndex = Random.Range(0, 6);
+            Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
+        }
+    }
+
     private void BallHitted()
     {
         if (_ballHp == 3)

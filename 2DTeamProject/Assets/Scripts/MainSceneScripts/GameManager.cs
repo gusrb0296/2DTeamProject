@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject _BallPrefabs;
+    public UIManager _uiManager;
+
+    public float _time; //ì‹œê°„ì €ì¥
 
     int _GameLevelIndex;
     int _ballCount;
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+        Time.timeScale = 1;
         _GameLevelIndex = PlayerPrefs.GetInt("GameLevel");
     }
 
@@ -26,8 +30,14 @@ public class GameManager : MonoBehaviour
         BallPorduce();
         InvokeRepeating("BallSpawn", 5, 7);
     }
+    private void Update()
+    {
+        _uiManager.GameOver(); //updateë¬¸ì—ë‹¤ ì‚¬ìš©ì‹œ ë„ˆë¬´ ë‚­ë¹„ë˜ë‹ˆê¹ ê³µí”¼ê²©ì‹œë¡œ ì˜®ê¸°ê¸°
+        _time += Time.deltaTime;
+        _uiManager._timeText.text = $"ì‹œê°„ : {(int)_time}";
+    }
 
-    public void BallPorduce() // °ø»ı¼º
+    public void BallPorduce() // ê³µìƒì„±
     {
         for (int i = 0; i < _GameLevelIndex; i++)
         {
@@ -51,5 +61,5 @@ public class GameManager : MonoBehaviour
         {
             CancelInvoke("BallSpawn");
         }
-    } //³­ÀÌµµ¿¡ µû¸¥ °ø»ı¼º °¹¼ö
+    } //ë‚œì´ë„ì— ë”°ë¥¸ ê³µìƒì„± ê°¯ìˆ˜
 }

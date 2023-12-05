@@ -1,33 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public float limit = 10f;
-
+    private float time = 0f;
     public TextMeshProUGUI timeTxt;
     public GameObject endPanel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeTxt = GetComponent<TextMeshProUGUI>();
-    }
-
     void Update()
     {
-        limit -= Time.deltaTime;
+        time += Time.deltaTime;
 
-        if (limit <= 0.0f)
-        {
-            limit = 0.0f;
-            //endPanel.SetActive(true);
-            //Time.timeScale = 0.0f;
-        }
+        //if (/*게임오버*/)
+        //{
+        //    endPanel.SetActive(true);
+        //    Time.timeScale = 0;
+        //}
 
-        timeTxt.text = "�ð� : " + limit.ToString("N2");
+        timeTxt.text = "시간 : " + time.ToString("N2");
     }
 }

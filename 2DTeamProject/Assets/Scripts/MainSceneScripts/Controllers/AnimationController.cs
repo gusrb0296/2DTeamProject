@@ -6,13 +6,11 @@ using UnityEngine.InputSystem;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
-    [SerializeField] private SpriteRenderer _sprite;
     PlayerInputController _controller;
 
     private void Awake()
     {
         _controller = GetComponent<PlayerInputController>();
-        _sprite = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
@@ -35,7 +33,7 @@ public class AnimationController : MonoBehaviour
         //    _anim.ResetTrigger("JumpBack");
         //}
     }
-    private void AnimRun(Vector2 direction)
+    public void AnimRun(Vector2 direction)
     {
         _anim.SetFloat("IsRun", direction.magnitude);
         transform.rotation = new Quaternion(0, direction.x > 0 ? 180 : 0, 0, 0);
