@@ -7,8 +7,7 @@ public class BulletPenetrate : ItemManager
         if (collision.tag == "Player")
         {
             // Bullet Pentrate
-            _player = collision.gameObject.GetComponent<PlayerAttackSystem>();
-            BulletPenetrateItem(_player);
+            BulletPenetrateItem();
 
             Destroy(gameObject);    // 추후 오브젝트 풀링
         }

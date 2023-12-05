@@ -7,8 +7,7 @@ public class BulletIncrease : ItemManager
         if (collision.tag == "Player")
         {
             // Bullet Count Up
-            _player = collision.gameObject.GetComponent<PlayerAttackSystem>();
-            BulletCountUpItem(_player);
+            BulletCountUpItem();
 
             Destroy(gameObject);    // 추후 오브젝트 풀링
         }

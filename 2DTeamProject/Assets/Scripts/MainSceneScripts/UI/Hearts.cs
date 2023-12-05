@@ -1,45 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Hearts : MonoBehaviour
 {
-    public int health;
-    public int numOfHearts;
+    public int playerHealth = 10; // 0~10까지의 플레이어 하트(체력)를 나타냄
+    private int maxHealth = 10; // 하트를 모두 얻을 수 있는 최고 체력
 
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public GameObject[] hearts;
+    public GameObject[] halfHearts;
+    public GameObject[] blackHearts;
+
 
     void Update()
     {
-        // health가 numOfHearts보다 크게 설정할 경우
-        if (health > numOfHearts)
+        // playerHealth가 maxHealth보다 크게 설정할 경우
+        if (playerHealth > maxHealth)
         {
-            health = numOfHearts;
+            playerHealth = maxHealth;
         }
 
-
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = maxHealth; i > 0; i--)
         {
-            // 꽉 찬 하트와 빈 하트 표시
-            if (i < health)
+            if (i % 2 == 0)
             {
-                hearts[i].sprite = fullHeart;
+                if (playerHealth < i)
+                {
+                    hearts[i / 2 - 1].SetActive(false);
+                    blackHearts[i / 2 - 1].SetActive(true);
+                    halfHearts[i / 2 - 1].SetActive(false);
+                }
+                else
+                {
+                    hearts[i / 2 - 1].SetActive(true);
+                    blackHearts[i / 2 - 1].SetActive(false);
+                    halfHearts[i / 2 - 1].SetActive(false);
+                }
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
-            }
-
-
-            // numOfHearts의 개수만큼 표시되는 총 hearts 이미지 개수
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
+                if (playerHealth == i)
+                {
+                    halfHearts[i / 2].SetActive(true);
+                }
             }
         }
     }

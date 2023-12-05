@@ -16,9 +16,10 @@ public class PlayerAttackSystem : ItemManager
 
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
-    GameObject bullet; // ( bullet¥¬ player∞° πﬂªÁ«œ¥¬ √—æÀ Prefab )
-
-    private bool coolTimeCheck = true;
+    GameObject bullet; // ( bulletÎäî playerÍ∞Ä Î∞úÏÇ¨ÌïòÎäî Ï¥ùÏïå Prefab )
+    GameObject PenetrateItemBullet;
+    GameObject bounceBullet;
+    GameObject guidedMissileBullet;
 
     // ItemType Reset Value
     public ItemType currentItem;
@@ -31,6 +32,10 @@ public class PlayerAttackSystem : ItemManager
     {
         _controller = GetComponent<TopDownCharacterController>();
         bullet = Resources.Load<GameObject>("Prefabs/Bullet");
+        PenetrateItemBullet = Resources.Load<GameObject>("Prefabs/PenetrateItemBullet");
+        bounceBullet = Resources.Load<GameObject>("Prefabs/BounceBullet");
+        guidedMissileBullet = Resources.Load<GameObject>("Prefabs/GuidedMissileBullet");
+
     }
 
     private void Start()
@@ -48,7 +53,7 @@ public class PlayerAttackSystem : ItemManager
     private void Attack()
     {
         // CoolTime Check
-        if (coolTimeCheck == true) StartCoroutine(CollTime(coolTime));
+        if (CoolTimeCheck == true) StartCoroutine(CollTime(CoolTime));
     }
 
     private void RecallBullet()
@@ -65,8 +70,10 @@ public class PlayerAttackSystem : ItemManager
                 ItemBulletPenetrateItem();
                 break;
             case ItemType.BounceItem:
+                ItemBulletBounce();
                 break;
             case ItemType.GuidedMissileItem:
+                ItemBulletGuidedMissile();
                 break;
             default:
                 break;
@@ -76,13 +83,13 @@ public class PlayerAttackSystem : ItemManager
     private void ApplyAttck(GameObject obj)
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
-        bulletRigid.AddForce(transform.up * this.force, ForceMode2D.Impulse);
+        bulletRigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
     }
 
     private IEnumerator CollTime(float time)
     {
         // CoolTime Setting
-        coolTimeCheck = false;
+        CoolTimeCheck = false;
 
         RecallBullet();
 
@@ -93,24 +100,11 @@ public class PlayerAttackSystem : ItemManager
         }
 
         // CoolTime Reset
-        coolTimeCheck = true;
+        CoolTimeCheck = true;
     }
     #endregion
 
     #region BulletState
-    private void BulletStateCheck()
-    {
-        if (currentItem != ItemType.Normal && itemDuration > 0f)
-        {
-            itemDuration -= Time.deltaTime;
-        }
-        if (itemDuration <= 0f && currentItem != ItemType.Normal)
-        {
-            itemDuration = 0f;
-            currentItem = ItemType.Normal;
-        }
-    }
-
     private void ItemNormalBullet()
     {
         GameObject playerbullet = Instantiate(bullet);
@@ -130,9 +124,37 @@ public class PlayerAttackSystem : ItemManager
 
     private void ItemBulletPenetrateItem()
     {
-        ItemNormalBullet();
+        GameObject playerbullet = Instantiate(PenetrateItemBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerbullet);
+    }
+
+    private void ItemBulletBounce()
+    {
+        GameObject playerbullet = Instantiate(bounceBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        ApplyAttck(playerbullet);
+    }
+
+    private void ItemBulletGuidedMissile()
+    {
+        GameObject playerbullet = Instantiate(guidedMissileBullet);
+        playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
     }
     #endregion
+
+    private void BulletStateCheck()
+    {
+        if (currentItem != ItemType.Normal && itemDuration > 0f)
+        {
+            itemDuration -= Time.deltaTime;
+        }
+        if (itemDuration <= 0f && currentItem != ItemType.Normal)
+        {
+            itemDuration = 0f;
+            currentItem = ItemType.Normal;
+        }
+    }
 }
 
 //public class PlayerItemBulletState : PlayerAttackSystem
