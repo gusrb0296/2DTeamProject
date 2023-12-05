@@ -18,17 +18,17 @@ public class BtnClickSound : MonoBehaviour
     {
         _pauseBtn.onClick.AddListener(() => _btnSource.Play());
         _resumeBtn.onClick.AddListener(() => _btnSource.Play());
-        _restartBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene(0); });
+        _restartBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
         _exitBtn.onClick.AddListener(() => { _btnSource.Play(); QuitGame(); });
-        _retryBtn1.onClick.AddListener(() => { _btnSource.Play(); LoadScene(0); });
-        _nextLvBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene(1); });
-        _retryBtn2.onClick.AddListener(() => { _btnSource.Play(); LoadScene(0); });
+        _retryBtn1.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
+        _nextLvBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene("StartScene"); });
+        _retryBtn2.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
     }
 
-    private void LoadScene(int index)
+    private void LoadScene(string _sceneName)
     {
-        SceneManager.LoadScene("MainScene");
-        //°ÔÀÓ ¸Å´ÏÁ®ÇÑÅ× index°ª ³Ñ°ÜÁÖ¸é ÇØ´çÇÏ´Â Enum°ª ¼³Á¤ÇÏ°Ô
+        SceneManager.LoadScene(_sceneName);
+        //ê²Œìž„ ë§¤ë‹ˆì ¸í•œí…Œ indexê°’ ë„˜ê²¨ì£¼ë©´ í•´ë‹¹í•˜ëŠ” Enumê°’ ì„¤ì •í•˜ê²Œ
     }
     private void QuitGame()
     {

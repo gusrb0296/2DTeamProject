@@ -940,7 +940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2E4\uC74C \uB808\uBCA8"
+  m_text: "\uB3CC\uC544\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f2b3dc1485b29c498cecbc91142667b, type: 2}
   m_sharedMaterial: {fileID: 2969375576545305877, guid: 6f2b3dc1485b29c498cecbc91142667b, type: 2}
@@ -2177,7 +2177,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 559498056}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 643224673}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: StartSceneLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &559498056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2595,10 +2607,12 @@ MonoBehaviour:
   _gameoverPanel: {fileID: 1995200293}
   _clearScore: {fileID: 1896656383}
   _gameoverScore: {fileID: 1541331300}
+  _timeText: {fileID: 1040686207}
+  _StartSceneBtn: {fileID: 559498055}
   Backgroundsprites:
+  - {fileID: 21300000, guid: 7834a29dd1fe8504aaadcb9dda0e745a, type: 3}
   - {fileID: 21300000, guid: edc45481e0e939747ac34e3b430344b8, type: 3}
-  - {fileID: 21300000, guid: 8f24c4e8dce9cbc43b5a851af09b1d76, type: 3}
-  - {fileID: 21300000, guid: c7e2edbb53f0c4245a8fe7498daddf0b, type: 3}
+  - {fileID: 21300000, guid: 673b512b559ac0c4fa1f125d3e72ca90, type: 3}
   BackgroundPanel: {fileID: 2005110351}
 --- !u!4 &643224674
 Transform:
@@ -4032,8 +4046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: 440}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -59.375, y: 440}
+  m_SizeDelta: {x: 478.7502, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040686207
 MonoBehaviour:
@@ -4089,7 +4103,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7810,7 +7824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ad8ca1f49b285c4f9327d94e72be5d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 673b512b559ac0c4fa1f125d3e72ca90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

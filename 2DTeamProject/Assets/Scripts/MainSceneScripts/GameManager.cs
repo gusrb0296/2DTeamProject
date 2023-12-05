@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
         _time += Time.deltaTime;
+        _uiManager._timeText.text = $"시간 : {(int)_time}";
     }
 
     public void BallPorduce() // 공생성
