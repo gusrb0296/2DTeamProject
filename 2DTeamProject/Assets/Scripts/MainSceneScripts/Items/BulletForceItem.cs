@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class BulletForceItem : ItemManager
+public class BulletForceItem : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             // Bullet Force Increase
-            BulletSpeedUp();
-            // ÇÃ·¹ÀÌ¾î »ç¸Á½Ã ÃÊ±âÈ­ ÇÊ¿ä.
+            _itemManager.BulletSpeedUp();
+            // í”Œë ˆì´ì–´ ì‚¬ë§ì‹œ ì´ˆê¸°í™” í•„ìš”.
 
-            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ 
+            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§ 
         }
     }
 }

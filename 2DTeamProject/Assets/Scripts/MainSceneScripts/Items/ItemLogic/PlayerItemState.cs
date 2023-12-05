@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class PlayerItemState : MonoBehaviour
 {
     #region ItemTypeEnum
     public enum ItemType
@@ -14,19 +14,19 @@ public class ItemManager : MonoBehaviour
         BounceItem,         // 튕김
         GuidedMissileItem   // 유도탄
     }
+
+    // ItemType Reset Value
+    public ItemType currentItem;
+
     #endregion
 
     #region Global_Variale
+
     public PlayerAttackSystem _player;
 
-    // Basic Value
-    [SerializeField] protected float force = 5f;
-    [SerializeField] protected float coolTime = 1.0f;
-    [SerializeField] protected bool coolTimeCheck = true;
+    // Item Use DurationTime
+    public float itemDuration = 0f;
 
-    public float Force { get { return force; } set {  force = value; } }
-    public float CoolTime {  get {  return coolTime; } set {  coolTime = value; } }
-    public bool CoolTimeCheck { get { return coolTimeCheck; } set { coolTimeCheck = value; } }
     #endregion
 
     private void Awake()
@@ -34,53 +34,67 @@ public class ItemManager : MonoBehaviour
         _player = FindObjectOfType<PlayerAttackSystem>();
     }
 
-    #region Continuation_Item
-    protected void BulletDelayLower()
+    private void Update()
     {
-        coolTime -= 0.05f;
+        BulletStateCheck();
     }
 
-    protected void BulletSpeedUp()
+    #region Continuation_Item
+
+    public void BulletSpeedUp()
     {
-        force += 0.5f;
+        _player.Force += 0.5f;
     }
     #endregion
 
     #region OneTime_Item
-    protected void BulletCountUpItem()
+    public void BulletCountUpItem()
     {
         BulletStateReset(_player);
-        _player.currentItem = ItemType.BulletUPItem;
+        currentItem = ItemType.BulletUPItem;
     }
 
-    protected void BulletPenetrateItem()
+    public void BulletPenetrateItem()
     {
         BulletStateReset(_player);
-        _player.currentItem = ItemType.PenetrateItem;
+        currentItem = ItemType.PenetrateItem;
     }
 
-    protected void BulletBounceItem()
+    public void BulletBounceItem()
     {
         BulletStateReset(_player);
-        _player.currentItem = ItemType.BounceItem;
+        currentItem = ItemType.BounceItem;
     }
 
-    protected void BulletGuidedMissileItem()
+    public void BulletGuidedMissileItem()
     {
         BulletStateReset(_player);
-        _player.currentItem = ItemType.GuidedMissileItem;
+        currentItem = ItemType.GuidedMissileItem;
     }
     #endregion
-    
-    protected void BulletCoolTimeReset()
+
+    public void BulletCoolTimeReset()
     {
-        coolTimeCheck = true;
+        _player.CoolTimeCheck = true;
+    }
+
+    private void BulletStateCheck()
+    {
+        if (currentItem != ItemType.Normal && itemDuration > 0f)
+        {
+            itemDuration -= Time.deltaTime;
+        }
+        if (itemDuration <= 0f && currentItem != ItemType.Normal)
+        {
+            itemDuration = 0f;
+            currentItem = ItemType.Normal;
+        }
     }
 
     private void BulletStateReset(PlayerAttackSystem player)
     {
-        player.itemDuration = 0f;
-        player.itemDuration = 5;
+        itemDuration = 0f;
+        itemDuration = 5;
     }
 
 

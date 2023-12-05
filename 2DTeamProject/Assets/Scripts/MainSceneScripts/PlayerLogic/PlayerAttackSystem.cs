@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerAttackSystem : ItemManager
+public class PlayerAttackSystem : MonoBehaviour
 {
     #region Example
     //// Coroutine Caching
@@ -12,67 +13,72 @@ public class PlayerAttackSystem : ItemManager
     #endregion
 
     #region Global_Variale
+    // Scripts
     TopDownCharacterController _controller;
+    PlayerItemState _itemManager;
 
+    // Component
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
 
+    // Bullet Prefab
     GameObject bullet; // ( bullet는 player가 발사하는 총알 Prefab )
     GameObject PenetrateItemBullet;
     GameObject bounceBullet;
     GameObject guidedMissileBullet;
 
-    // ItemType Reset Value
-    public ItemType currentItem;
-
-    public float itemDuration = 0f;
+    // Basic Value
+    public float Force { get; set; }
+    public bool CoolTimeCheck {  get; set; }
     #endregion
 
     #region Initialization_Settings
     private void Awake()
     {
+        // Scripts Search
         _controller = GetComponent<TopDownCharacterController>();
+        _itemManager = FindObjectOfType<PlayerItemState>();
+        // Resources Load
         bullet = Resources.Load<GameObject>("Prefabs/Bullet");
         PenetrateItemBullet = Resources.Load<GameObject>("Prefabs/PenetrateItemBullet");
         bounceBullet = Resources.Load<GameObject>("Prefabs/BounceBullet");
         guidedMissileBullet = Resources.Load<GameObject>("Prefabs/GuidedMissileBullet");
-
     }
 
     private void Start()
     {
         _controller.OnAttackEvent += Attack;
+        PlayerBasicValue();
     }
     #endregion
 
     #region Player_AttackLogic
-    private void Update()
-    {
-        BulletStateCheck();
-    }
-
     private void Attack()
     {
         // CoolTime Check
-        if (CoolTimeCheck == true) StartCoroutine(CollTime(CoolTime));
+        if (CoolTimeCheck == true)
+        {
+            CoolTimeCheck = false;
+            RecallBullet();
+        }
     }
 
     private void RecallBullet()
     {
-        switch (currentItem)
+        switch (_itemManager.currentItem)
         {
-            case ItemType.Normal:
+            case PlayerItemState.ItemType.Normal:
                 ItemNormalBullet();
                 break;
-            case ItemType.BulletUPItem:
+            case PlayerItemState.ItemType.BulletUPItem:
                 ItemBulletCountUp();
                 break;
-            case ItemType.PenetrateItem:
+            case PlayerItemState.ItemType.PenetrateItem:
                 ItemBulletPenetrateItem();
                 break;
-            case ItemType.BounceItem:
+            case PlayerItemState.ItemType.BounceItem:
                 ItemBulletBounce();
                 break;
-            case ItemType.GuidedMissileItem:
+            case PlayerItemState.ItemType.GuidedMissileItem:
                 ItemBulletGuidedMissile();
                 break;
             default:
@@ -84,23 +90,6 @@ public class PlayerAttackSystem : ItemManager
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
         bulletRigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
-    }
-
-    private IEnumerator CollTime(float time)
-    {
-        // CoolTime Setting
-        CoolTimeCheck = false;
-
-        RecallBullet();
-
-        while (time > 0.0f)
-        {
-            time -= Time.deltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-        // CoolTime Reset
-        CoolTimeCheck = true;
     }
     #endregion
 
@@ -143,18 +132,15 @@ public class PlayerAttackSystem : ItemManager
     }
     #endregion
 
-    private void BulletStateCheck()
+    #region StateReset
+
+    private void PlayerBasicValue()
     {
-        if (currentItem != ItemType.Normal && itemDuration > 0f)
-        {
-            itemDuration -= Time.deltaTime;
-        }
-        if (itemDuration <= 0f && currentItem != ItemType.Normal)
-        {
-            itemDuration = 0f;
-            currentItem = ItemType.Normal;
-        }
+        _itemManager.currentItem = PlayerItemState.ItemType.Normal;
+        Force = 8f;
+        CoolTimeCheck = true;
     }
+    #endregion
 }
 
 //public class PlayerItemBulletState : PlayerAttackSystem

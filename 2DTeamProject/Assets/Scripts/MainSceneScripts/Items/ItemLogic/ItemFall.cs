@@ -8,7 +8,7 @@ public class ItemFall : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
 
-    float timer = 5;
+    float timer = 1;
     bool filckerCheck = true;
 
     private void Awake()
@@ -56,7 +56,7 @@ public class ItemFall : MonoBehaviour
     {
         float Counter = 0;
 
-        while ( Counter < 15)
+        while ( Counter < 10)
         {
             float alpCol = 0;
             while (alpCol <  1.0f)

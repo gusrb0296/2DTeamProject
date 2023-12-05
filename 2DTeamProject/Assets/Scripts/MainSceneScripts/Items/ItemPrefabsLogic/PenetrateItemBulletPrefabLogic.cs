@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PenetrateItemBulletPrefabLogic : ItemManager
+public class PenetrateItemBulletPrefabLogic : MonoBehaviour
 {
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -12,16 +12,23 @@ public class PenetrateItemBulletPrefabLogic : ItemManager
     //    }
     //}
 
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "TopWall")
         {
-            BulletCoolTimeReset();
+            _itemManager.BulletCoolTimeReset();
             Destroy(gameObject);    // 추후 오브젝트풀링
         }
         if (collision.tag == "Ball")
         {
-            BulletCoolTimeReset();
+            _itemManager.BulletCoolTimeReset();
         }
     }
 }

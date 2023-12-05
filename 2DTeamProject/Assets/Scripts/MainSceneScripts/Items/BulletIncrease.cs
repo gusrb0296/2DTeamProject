@@ -1,15 +1,22 @@
 using UnityEngine;
 
-public class BulletIncrease : ItemManager
+public class BulletIncrease : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             // Bullet Count Up
-            BulletCountUpItem();
+            _itemManager.BulletCountUpItem();
 
-            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ
+            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§
         }
     }
 

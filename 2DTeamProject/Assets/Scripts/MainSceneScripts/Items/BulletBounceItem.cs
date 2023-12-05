@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class BulletBounceItem : ItemManager
+public class BulletBounceItem : MonoBehaviour
 {
+    PlayerItemState _itemManager;
+
+    private void Awake()
+    {
+        _itemManager = FindObjectOfType<PlayerItemState>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             // Bullet Bounce
-            BulletBounceItem();
+            _itemManager.BulletBounceItem();
 
-            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ® Ç®¸µ
+            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸ í’€ë§
         }
     }
 }
