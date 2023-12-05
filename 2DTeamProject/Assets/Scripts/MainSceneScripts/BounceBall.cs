@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,7 +51,7 @@ public class BounceBall : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Destroy(collision.gameObject);  // 총알 삭제
-            Debug.Log("맞았습니다.");
+            //Debug.Log("맞았습니다.");
             BallHitted();
             Destroy(gameObject);
         }

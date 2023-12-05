@@ -12,7 +12,7 @@ public class Hearts : MonoBehaviour
 
     void Update()
     {
-        // health°¡ numOfHeartsº¸´Ù Å©°Ô ¼³Á¤ÇÒ °æ¿ì
+        // healthê°€ numOfHeartsë³´ë‹¤ í¬ê²Œ ì„¤ì •í•  ê²½ìš°
         if (health > numOfHearts)
         {
             health = numOfHearts;
@@ -21,7 +21,7 @@ public class Hearts : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            // ²Ë Âù ÇÏÆ®¿Í ºó ÇÏÆ® Ç¥½Ã
+            // ê½‰ ì°¬ í•˜íŠ¸ì™€ ë¹ˆ í•˜íŠ¸ í‘œì‹œ
             if (i < health)
             {
                 hearts[i].sprite = fullHeart;
@@ -32,7 +32,7 @@ public class Hearts : MonoBehaviour
             }
 
 
-            // numOfHeartsÀÇ °³¼ö¸¸Å­ Ç¥½ÃµÇ´Â ÃÑ hearts ÀÌ¹ÌÁö °³¼ö
+            // numOfHeartsì˜ ê°œìˆ˜ë§Œí¼ í‘œì‹œë˜ëŠ” ì´ hearts ì´ë¯¸ì§€ ê°œìˆ˜
             if (i < numOfHearts)
             {
                 hearts[i].enabled = true;
@@ -42,5 +42,10 @@ public class Hearts : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+    }
+
+    protected void DecreaseHealth(int amount)
+    {
+        health -= amount;
     }
 }
