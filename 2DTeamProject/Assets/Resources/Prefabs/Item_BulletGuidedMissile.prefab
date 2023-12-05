@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1091860546888123733}
   m_Layer: 0
   m_Name: Item_BulletGuidedMissile
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,7 +174,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439b4c05a3afdd04cbdc8e9839e2c84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  force: 5
-  coolTime: 1
-  coolTimeCheck: 1

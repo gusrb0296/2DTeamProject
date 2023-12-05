@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1161876675675138151}
   m_Layer: 0
   m_Name: Item_BulletPenetrate
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,7 +174,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e3571ec7bdbd04b8155535e9f5bc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  force: 5
-  coolTime: 1
-  coolTimeCheck: 1
