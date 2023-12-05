@@ -161,7 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b19ca7f3e0f3a4ba0c1d18494942d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   force: 5
   coolTime: 1
-  coolTimeCheck: 1

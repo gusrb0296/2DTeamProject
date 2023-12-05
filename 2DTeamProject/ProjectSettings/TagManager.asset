@@ -7,8 +7,6 @@ TagManager:
   - Collider
   - Ball
   - Bullet
-  - Wall
-  - TopWall
   layers:
   - Default
   - TransparentFX
