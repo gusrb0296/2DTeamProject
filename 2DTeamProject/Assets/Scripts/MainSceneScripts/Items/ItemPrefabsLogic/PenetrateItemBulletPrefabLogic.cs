@@ -8,7 +8,7 @@ public class PenetrateItemBulletPrefabLogic : ItemManager
     //{
     //    if (collision.collider.CompareTag("TopWall"))
     //    {
-    //        Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸í’€ë§
+    //        Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ®Ç®¸µ
     //    }
     //}
 
@@ -16,12 +16,7 @@ public class PenetrateItemBulletPrefabLogic : ItemManager
     {
         if (collision.tag == "TopWall")
         {
-            BulletCoolTimeReset();
-            Destroy(gameObject);    // ì¶”í›„ ì˜¤ë¸Œì íŠ¸í’€ë§
-        }
-        if (collision.tag == "Ball")
-        {
-            BulletCoolTimeReset();
+            Destroy(gameObject);    // ÃßÈÄ ¿ÀºêÁ§Æ®Ç®¸µ
         }
     }
 }
