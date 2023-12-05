@@ -77,10 +77,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7258863385002153479, guid: 73473b6dbe23d5b4eb065d2d8219f361, type: 3}
-      propertyPath: _ballDamage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7258863385002153479, guid: 73473b6dbe23d5b4eb065d2d8219f361, type: 3}
       propertyPath: Balls.Array.size
       value: 3
       objectReference: {fileID: 0}

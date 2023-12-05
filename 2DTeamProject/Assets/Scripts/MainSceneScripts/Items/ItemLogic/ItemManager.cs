@@ -9,10 +9,10 @@ public class ItemManager : MonoBehaviour
     public enum ItemType
     {
         Normal,
-        BulletUPItem,       // bullet Í∞ØÏàò Ï¶ùÍ∞Ä
-        PenetrateItem,      // Í¥ÄÌÜµ
-        BounceItem,         // ÌäïÍπÄ
-        GuidedMissileItem   // Ïú†ÎèÑÌÉÑ
+        BulletUPItem,       // bullet ∞πºˆ ¡ı∞°
+        PenetrateItem,      // ∞¸≈Î
+        BounceItem,         // ∆®±Ë
+        GuidedMissileItem   // ¿Øµµ≈∫
     }
     #endregion
 
@@ -22,11 +22,9 @@ public class ItemManager : MonoBehaviour
     // Basic Value
     [SerializeField] protected float force = 5f;
     [SerializeField] protected float coolTime = 1.0f;
-    [SerializeField] protected bool coolTimeCheck = true;
 
     public float Force { get { return force; } set {  force = value; } }
     public float CoolTime {  get {  return coolTime; } set {  coolTime = value; } }
-    public bool CoolTimeCheck { get { return coolTimeCheck; } set { coolTimeCheck = value; } }
     #endregion
 
     private void Awake()
@@ -71,11 +69,6 @@ public class ItemManager : MonoBehaviour
         _player.currentItem = ItemType.GuidedMissileItem;
     }
     #endregion
-    
-    protected void BulletCoolTimeReset()
-    {
-        coolTimeCheck = true;
-    }
 
     private void BulletStateReset(PlayerAttackSystem player)
     {
@@ -110,7 +103,7 @@ public class ItemManager : MonoBehaviour
             yield return null;
         }
         player.currentItem = ItemType.Normal;
-        Debug.Log("ÎÅù");
+        Debug.Log("≥°");
     }
     */
 }

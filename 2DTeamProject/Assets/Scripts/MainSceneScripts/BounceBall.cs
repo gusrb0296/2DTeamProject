@@ -1,11 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BounceBall : MonoBehaviour
 {
-    [SerializeField] private int _ballHp;
-    [SerializeField] private int _ballDamage;
+    public int _ballHp;
     [SerializeField] private float speed = 300;
     private Rigidbody2D _rigidbody;
 
@@ -52,16 +51,10 @@ public class BounceBall : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Destroy(collision.gameObject);  // 총알 삭제
-            Debug.Log("공에 총알이 맞았습니다.");
+            Debug.Log("맞았습니다.");
             BallHitted();
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
-        }
-
-        
     }
     private void BallHitted()
     {
