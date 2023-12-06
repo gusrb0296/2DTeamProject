@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.instance.SetBGMByGameLevel();
         StartCoroutine("StartDelay");
         BallPorduce();
         InvokeRepeating("BallSpawn", 5, 7);

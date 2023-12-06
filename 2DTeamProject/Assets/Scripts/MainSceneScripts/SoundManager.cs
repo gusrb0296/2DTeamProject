@@ -40,8 +40,10 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource sfxPlayer = gameObject.AddComponent<AudioSource>();
         sfxPlays.Add(sfxPlayer);
+        SetBGMByGameLevel();
     }
 
+    // 배경음악 재생
     public void PlayBGM(string bgmName)
     {
         for (int i = 0; i < bgm.Length; i++)
@@ -55,11 +57,28 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // GameLevel에 따라 배경음악을 설정
+    public void SetBGMByGameLevel()
+    {
+        int gameLevel = PlayerPrefs.GetInt("GameLevel");
+        //Debug.Log(PlayerPrefs.GetInt("GameLevel"));
+
+        if (gameLevel >= 1 && gameLevel <= bgm.Length)
+        {
+            PlayBGM(bgm[gameLevel - 1].name);
+        }
+        else
+        {
+            Debug.Log("잘못된 GameLevel입니다.");
+        }
+    }
+
     public void StopBGM()
     {
         bgmPlay.Stop();
     }
 
+    // 효과음 재생
     public void PlaySFX(string sfxName, float volume = 0.05f)
     {
         for (int i = 0; i < sfx.Length; i++)
