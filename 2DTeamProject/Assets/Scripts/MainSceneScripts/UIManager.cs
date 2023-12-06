@@ -8,17 +8,18 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject _clearPanel;
-    public GameObject _gameoverPanel;
-    public TextMeshProUGUI _clearScore;
-    public TextMeshProUGUI _gameoverScore;
-    public TextMeshProUGUI _timeText;
-    public Sprite[] Backgroundsprites;
-    public Image BackgroundPanel;
+    public GameObject _gameoverPanel; 
+    public TextMeshProUGUI _clearScore; //게임승리 Score
+    public TextMeshProUGUI _gameoverScore; //게임오버시 Score 
+    public TextMeshProUGUI _timeText; // UI시간 
+    public TextMeshProUGUI _ScoreText; // UI점수 
+    public Sprite[] Backgroundsprites; //난이도 별로 다른 배경
+    public Image BackgroundPanel; //배경 이미지에 접근
     public Hearts _hearts;
 
-
-    int scoreText = 0;
-
+    public int scoreText = 0;
+    public bool _isGameScore = true;
+    
     private void Awake()
     {
         BackgroundPanel.sprite = Backgroundsprites[PlayerPrefs.GetInt("GameLevel") - 1];
@@ -50,23 +51,28 @@ public class UIManager : MonoBehaviour
 
     public void GameScore()
     {
-        int _time = (int)GameManager.instance._time;
+        int _time = (_hearts.playerHealth > 0) ? (int)GameManager.instance._time : 250;
+        int _health = (_hearts.playerHealth > 0) ? _hearts.playerHealth : 0;
 
         //조건을 넣어 GameOver시 다른 점수를 넣을 수 있도록 적용해야함
-        switch (GameManager.instance._time)
+        if (_isGameScore)
         {
-            case < 90:
-                scoreText += 40 * 100 + _hearts.playerHealth * 200; // 최고점수 4000점 + 2000 = 6000 여기에 공을 뿌셔서 얻은 점수 더하기
-                break;
-            case < 150:
-                scoreText += 30 * 100 + _hearts.playerHealth * 200;
-                break;
-            case < 210:
-                scoreText += 20 * 100 + _hearts.playerHealth * 200;
-                break;
-            default:
-                scoreText += 10 * 100 + _hearts.playerHealth * 200;
-                break;
+            _isGameScore = false;
+            switch (_time)
+            {
+                case < 90:
+                    scoreText += 40 * 150 + _health * 300; // 최고점수 4000점 + 2000 = 6000 여기에 공을 뿌셔서 얻은 점수 더하기
+                    break;
+                case < 150:
+                    scoreText += 30 * 150 + _health * 300;
+                    break;
+                case < 210:
+                    scoreText += 20 * 150 + _health * 300;
+                    break;
+                default:
+                    scoreText += 10 * 150 + _health * 300;
+                    break;
+            }   
         }
         _gameoverScore.text = scoreText.ToString();
         _clearScore.text = scoreText.ToString();

@@ -92,6 +92,7 @@ public class BounceBall : MonoBehaviour
             int RandomIndex = Random.Range(0, 5);
             Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
         }
+        GameManager.instance._uiManager.scoreText += Random.Range(150, 200);
     }
 
     private void BallHitted()

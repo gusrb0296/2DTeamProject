@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         Time.timeScale = 1;
+        _uiManager._isGameScore = true;
         _GameLevelIndex = PlayerPrefs.GetInt("GameLevel");
     }
 
@@ -37,7 +39,8 @@ public class GameManager : MonoBehaviour
             _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
         }
         _time += Time.deltaTime;
-        _uiManager._timeText.text = $"시간 : {(int)_time}";
+        _uiManager._timeText.text = $"시간 : {"<color=#4EFF8B>" + (int)_time + "</color>"}";
+        _uiManager._ScoreText.text = $"점수 : {"<color=#FFD853>" + _uiManager.scoreText + "</color>"}";
     }
 
     public void BallPorduce() // 공생성
