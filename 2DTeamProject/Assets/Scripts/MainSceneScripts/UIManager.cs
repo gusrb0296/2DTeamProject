@@ -36,12 +36,14 @@ public class UIManager : MonoBehaviour
     {
         if (_hearts.playerHealth > 0)
         {
+            SoundManager.instance.StopBGM();
             Time.timeScale = 0;
             GameScore();
             _clearPanel.gameObject.SetActive(true);
         }
         else if (_hearts.playerHealth <= 0)
         {
+            SoundManager.instance.StopBGM();
             yield return new WaitForSeconds(2f);
             Time.timeScale = 0;
             GameScore();
