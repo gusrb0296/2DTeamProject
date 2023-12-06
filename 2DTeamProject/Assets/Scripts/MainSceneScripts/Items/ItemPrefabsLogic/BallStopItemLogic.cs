@@ -32,7 +32,7 @@ public class BallStopItemLogic : MonoBehaviour
         if (ItemCheck == true)
         {
             Timer();
-            Debug.Log(times);
+            //Debug.Log(times);
             if (BallsCheck.Count != Balls.Count && times > 0)
             {
                 BallCountCheck();

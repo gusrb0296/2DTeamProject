@@ -8091,6 +8091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 2100056243}
   _spritexplosion: {fileID: 1060732218}
+  speed: 5
 --- !u!61 &2100056234
 BoxCollider2D:
   m_ObjectHideFlags: 0

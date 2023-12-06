@@ -18,6 +18,7 @@ public class PlayerInputController : TopDownCharacterController
     {
         coolTimeCheckValue = _playerAttackSystem.CoolTimeCheck;
     }
+
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>();
@@ -43,8 +44,36 @@ public class PlayerInputController : TopDownCharacterController
         sprite.enabled = false;
     }
 
-    public void OnJump(InputValue value)
-    {
-        //
-    }
+    [SerializeField] private float speed;
+    private bool isSliding = false; // 슬라이딩 중인지 확인
+    //public void OnJump(InputValue value)
+    //{
+    //    // Sliding
+    //    if (Input.GetKeyDown(KeyCode.LeftControl))
+    //    {
+    //        StartCoroutine(Sliding());
+    //    }
+    //}
+    //private IEnumerator Sliding()
+    //{
+    //    isSliding = true;
+    //    _anim.SetBool("isSliding", true);
+
+    //    // 슬라이딩 동작 구현
+    //    Vector3 slidingDirection = transform.forward;
+    //    float slidingTime = 0.5f; // 슬라이딩 하는 총 시간
+    //    float startTime = Time.time;
+
+    //    while (Time.time < startTime + slidingTime)
+    //    {
+    //        float elapsed = (Time.time - startTime) / slidingTime; // 슬라이딩 동작의 진행률
+    //        float curve = elapsed * elapsed * (3 - 2 * elapsed); // Sigmoid-like curve for smooth start and end
+
+    //        transform.position += slidingDirection * speed * curve * Time.deltaTime;
+    //        yield return null;
+    //    }
+
+    //    isSliding = false;
+    //    _anim.SetBool("isSliding", false);
+    //}
 }

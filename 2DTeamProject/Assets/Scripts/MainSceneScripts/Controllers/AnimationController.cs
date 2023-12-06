@@ -16,23 +16,6 @@ public class AnimationController : MonoBehaviour
     {
         _controller.OnMoveEvent += AnimRun;
     }
-    private void Update()
-    {
-        
-        //if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Left_Jump") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-        ////GetCurrentAnimatorStateInfo(0).normalizedTime은 현재 애니메이션 클립이 얼마나 재생되었는지를 나타내는 값을 반환
-        //{
-        //    _anim.ResetTrigger("JumpLeft");
-        //}
-        //if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Right_Jump") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-        //{
-        //    _anim.ResetTrigger("JumpRight");
-        //}
-        //if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Back_Jump") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-        //{
-        //    _anim.ResetTrigger("JumpBack");
-        //}
-    }
     public void AnimRun(Vector2 direction)
     {
         _anim.SetFloat("IsRun", direction.magnitude);
