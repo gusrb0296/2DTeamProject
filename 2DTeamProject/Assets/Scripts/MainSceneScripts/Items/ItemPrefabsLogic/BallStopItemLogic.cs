@@ -7,39 +7,50 @@ public class BallStopItemLogic : MonoBehaviour
     List<GameObject> Balls;
     List<GameObject> BallsCheck;
 
-    float times = 5;
+    float times = 0;
+
+    bool FirstAble;
 
     private void Awake()
     {
-        FirstCheck();
+        FirstAble = true;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        BallStop();
-        SoundManager.instance.PlaySFX("StopBallItem");
+        if (FirstAble != true)
+        {
+            times = 5;
+            FirstCheck();
+            BallStop();
+            SoundManager.instance.PlaySFX("StopBallItem");
+        }
+        FirstAble = false;
     }
 
     private void Update()
     {
-        BallCountCheck();
-
-        // Time Decrease
-        Timer();
-
-        // If Broken the Ball, Check again
-        if (BallsCheck.Count != Balls.Count && times > 0)
+        if(gameObject.activeSelf)
         {
             BallCountCheck();
-            BallStop();
-        }
 
-        // Time is zero ? Balls Activity again
-        if (times <= 0)
-        {
-            BallStart();
+            // Time Decrease
+            Timer();
 
-            Destroy(gameObject);
+            // If Broken the Ball, Check again
+            if (BallsCheck.Count != Balls.Count && times > 0)
+            {
+                BallCountCheck();
+                BallStop();
+            }
+
+            // Time is zero ? Balls Activity again
+            if (times <= 0)
+            {
+                BallStart();
+
+                gameObject.SetActive(false);
+            }
         }
     }
 

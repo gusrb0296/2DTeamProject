@@ -16,15 +16,10 @@ public class PlayerAttackSystem : MonoBehaviour
     // Scripts
     TopDownCharacterController _controller;
     PlayerItemState _itemManager;
+    public ObjectManager _objectManager;
 
     // Component
     Rigidbody2D bulletRigid;    // bullet Prefab Clone Rigidbody
-
-    // Bullet Prefab
-    GameObject bullet; // ( bullet는 player가 발사하는 총알 Prefab )
-    GameObject PenetrateItemBullet;
-    GameObject bounceBullet;
-    GameObject guidedMissileBullet;
 
     // Basic Value
     public float Force { get; set; }
@@ -37,11 +32,7 @@ public class PlayerAttackSystem : MonoBehaviour
         // Scripts Search
         _controller = GetComponent<TopDownCharacterController>();
         _itemManager = FindObjectOfType<PlayerItemState>();
-        // Resources Load
-        bullet = Resources.Load<GameObject>("Prefabs/Bullet");
-        PenetrateItemBullet = Resources.Load<GameObject>("Prefabs/PenetrateItemBullet");
-        bounceBullet = Resources.Load<GameObject>("Prefabs/BounceBullet");
-        guidedMissileBullet = Resources.Load<GameObject>("Prefabs/GuidedMissileBullet");
+        _objectManager = FindObjectOfType<ObjectManager>();
     }
 
     private void Start()
@@ -87,48 +78,48 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
 
-    private void ApplyAttck(GameObject obj)
+    private void ApplyAttck(GameObject obj, float upforce)
     {
         bulletRigid = obj.GetComponent<Rigidbody2D>();
-        bulletRigid.AddForce(transform.up * Force, ForceMode2D.Impulse);
+        bulletRigid.AddForce(transform.up * Force * upforce, ForceMode2D.Impulse);
     }
     #endregion
 
-    #region BulletState
+    #region BulletLogic
     private void ItemNormalBullet()
     {
-        GameObject playerbullet = Instantiate(bullet);
+        GameObject playerbullet = _objectManager.MakeObject("BulletNormal");
         playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        ApplyAttck(playerbullet);
+        ApplyAttck(playerbullet, 1);
     }
 
     private void ItemBulletCountUp()
     {
-        GameObject playerBullet1 = Instantiate(bullet);
-        GameObject playerBullet2 = Instantiate(bullet);
+        GameObject playerBullet1 = _objectManager.MakeObject("BulletNormal");
+        GameObject playerBullet2 = _objectManager.MakeObject("BulletNormal");
         playerBullet1.transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.4f, transform.position.z);
         playerBullet2.transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.4f, transform.position.z);
-        ApplyAttck(playerBullet1);
-        ApplyAttck(playerBullet2);
+        ApplyAttck(playerBullet1, 1.5f);
+        ApplyAttck(playerBullet2, 1.5f);
     }
 
     private void ItemBulletPenetrateItem()
     {
-        GameObject playerbullet = Instantiate(PenetrateItemBullet);
+        GameObject playerbullet = _objectManager.MakeObject("bulletPenetrate");
         playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        ApplyAttck(playerbullet);
+        ApplyAttck(playerbullet, 2f);
     }
 
     private void ItemBulletBounce()
     {
-        GameObject playerbullet = Instantiate(bounceBullet);
+        GameObject playerbullet = _objectManager.MakeObject("BulletBounce");
         playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        ApplyAttck(playerbullet);
+        ApplyAttck(playerbullet, 1.2f);
     }
 
     private void ItemBulletGuidedMissile()
     {
-        GameObject playerbullet = Instantiate(guidedMissileBullet);
+        GameObject playerbullet = _objectManager.MakeObject("BulletGuided");
         playerbullet.transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
     }
     #endregion

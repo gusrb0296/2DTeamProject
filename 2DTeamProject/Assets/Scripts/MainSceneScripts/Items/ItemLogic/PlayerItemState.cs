@@ -51,7 +51,7 @@ public class PlayerItemState : MonoBehaviour
 
     public void BallFreezingItem()
     {
-        Instantiate(FreezingItem);
+        _player._objectManager.MakeObject("BallFreezing");
         SoundManager.instance.PlaySFX("GetItems");
     }
     #endregion

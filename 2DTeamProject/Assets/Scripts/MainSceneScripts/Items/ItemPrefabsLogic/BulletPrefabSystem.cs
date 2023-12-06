@@ -14,7 +14,7 @@ public class BulletPrefabSystem : MonoBehaviour
         if (collision.tag == "Ball" || collision.tag == "TopWall")
         {
             _itemManager.BulletCoolTimeReset();
-            Destroy(gameObject);    // 추후 오브젝트풀링
+            gameObject.SetActive(false);
         }
     }
 }

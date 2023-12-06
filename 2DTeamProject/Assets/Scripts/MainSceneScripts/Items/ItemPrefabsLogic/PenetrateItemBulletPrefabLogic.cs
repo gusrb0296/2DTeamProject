@@ -24,11 +24,7 @@ public class PenetrateItemBulletPrefabLogic : MonoBehaviour
         if (collision.tag == "TopWall")
         {
             _itemManager.BulletCoolTimeReset();
-            Destroy(gameObject);    // 추후 오브젝트풀링
-        }
-        if (collision.tag == "Ball")
-        {
-            _itemManager.BulletCoolTimeReset();
+            gameObject.SetActive(false);
         }
     }
 }

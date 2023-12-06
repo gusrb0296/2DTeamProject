@@ -20,6 +20,12 @@ public class BounceBulletPrefabLogic : MonoBehaviour
         _itemManager = FindObjectOfType<PlayerItemState>();
     }
 
+    private void OnEnable()
+    {
+        bulletLifeCount = 0;
+        firstWallCheck = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("TopWall"))
@@ -28,13 +34,11 @@ public class BounceBulletPrefabLogic : MonoBehaviour
             {
                 // byllet CoolTime Reset
                 _itemManager.BulletCoolTimeReset();
-
                 // Random Angle Setting
                 int randomAngle = Random.Range(0, arrAngles.Length);
                 Vector3 tmps = transform.eulerAngles;
                 tmps.z = arrAngles[randomAngle];
                 transform.eulerAngles = tmps;
-                _rigid.AddForce(transform.up * _itemManager._player.Force, ForceMode2D.Impulse);
                 firstWallCheck = false;
             }
             else
@@ -44,28 +48,33 @@ public class BounceBulletPrefabLogic : MonoBehaviour
                 tmp.z = _Radian - tmp.z;
                 transform.eulerAngles = tmp;
                 // Bounce After AddForce
-                _rigid.AddForce(transform.up * _itemManager._player.Force, ForceMode2D.Impulse);
             }
+            //_rigid.velocity = Vector3.zero;
+            _rigid.AddForce(transform.up * _itemManager._player.Force * 1.2f, ForceMode2D.Impulse);
         }
         else if (collision.collider.CompareTag("Wall"))
         {
             Vector3 tmp = transform.eulerAngles;
             tmp.z = (_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-            _rigid.AddForce(transform.up * _itemManager._player.Force, ForceMode2D.Impulse);
+            //_rigid.velocity = Vector3.zero;
+            _rigid.AddForce(transform.up * _itemManager._player.Force * 1.2f, ForceMode2D.Impulse);
         }
         bulletLifeCount++;
 
         if (collision.collider.CompareTag("Ball"))
         {
-            _itemManager.BulletCoolTimeReset();
-            Destroy(gameObject);
+            if(firstWallCheck == true) _itemManager.BulletCoolTimeReset();
+            firstWallCheck = false;
+            gameObject.SetActive(false);
         }
 
         // bullet Destory Condition ( 오브젝트 풀링 필요 )
-        if(bulletLifeCount >= 6)
+        if(bulletLifeCount >= 4)
         {
-            Destroy(gameObject);
+            _itemManager.BulletCoolTimeReset();
+            firstWallCheck = false;
+            gameObject.SetActive(false);
         }
     }
 
@@ -77,4 +86,6 @@ public class BounceBulletPrefabLogic : MonoBehaviour
     //        destroy(gameobject);
     //    }
     //}
+
+    //private void OnCollisionEnter2D(Collision2D collision)
 }

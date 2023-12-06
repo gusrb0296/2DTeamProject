@@ -13,17 +13,17 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
 
     float nearDis;
 
-    // LockOn Setting
     private void Awake()
     {
         _itemManager = FindObjectOfType<PlayerItemState>();
-        LookOnCheck();
     }
 
-    // LockOn Search
-    private void Start()
+    private void OnEnable()
     {
-        if(Balls.Count != 0) LookOnSearch();
+        // LockOn Setting
+        LookOnCheck();
+        // LockOn Search
+        if (Balls.Count != 0) LookOnSearch();
     }
 
     // LockOn Target Attack
@@ -37,7 +37,7 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
         if (collision.tag == "Ball" || collision.tag == "Wall" || collision.tag == "TopWall")
         {
             _itemManager.BulletCoolTimeReset();
-            Destroy(gameObject);    // 추후 오브젝트 풀링
+            gameObject.SetActive(false);
         }
     }
 
@@ -70,7 +70,7 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
     {
         // LookOnTarget Null Check
         if (LockOnTarget != null)
-            transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.transform.position, _itemManager._player.Force * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, LockOnTarget.transform.position, _itemManager._player.Force * 1.5f * Time.deltaTime);
         else
         {
             // LookOnTarget == null ? ReSearch
