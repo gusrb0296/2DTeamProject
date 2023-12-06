@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     int _GameLevelIndex;
     int _ballCount;
+    bool isGameOverCalled = false;
 
     private void Awake()
     {
@@ -39,7 +40,11 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Ball").Length == 0 || _uiManager._hearts.playerHealth <= 0)
         {
-            _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
+            if (!isGameOverCalled)
+            {
+                _uiManager.GameOver(); //update문에다 사용시 너무 낭비되니깐 공피격시로 옮기기
+                isGameOverCalled = true;
+            }
         }
         _time += Time.deltaTime;
         _uiManager._timeText.text = $"시간 : {"<color=#4EFF8B>" + (int)_time + "</color>"}";

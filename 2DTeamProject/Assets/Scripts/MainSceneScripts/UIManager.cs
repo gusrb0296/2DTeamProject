@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
             SoundManager.instance.StopBGM();
             Time.timeScale = 0;
             GameScore();
+            SoundManager.instance.PlaySFX("GameClear");
             _clearPanel.gameObject.SetActive(true);
         }
         else if (_hearts.playerHealth <= 0)
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
             Time.timeScale = 0;
             GameScore();
+            SoundManager.instance.PlaySFX("GameOver");
             _gameoverPanel.gameObject.SetActive(true);
         }
     }

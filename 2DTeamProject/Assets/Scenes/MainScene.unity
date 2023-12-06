@@ -1661,6 +1661,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e01bef61f6f53754e8388f8d25cf33af, type: 3}
   - name: StopBallItem
     clip: {fileID: 8300000, guid: 69e33e63b26af9f438ee0e1eae5ab927, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 999f83b55172d8043be0dbaed08f565c, type: 3}
+  - name: GameClear
+    clip: {fileID: 8300000, guid: 7fc8164ee589768439d2317932c8f8db, type: 3}
+  - name: BallHit
+    clip: {fileID: 8300000, guid: 5e6ba4522d39dd1419b005c518b0df96, type: 3}
   bgmPlay: {fileID: 459501053}
   sfxPlays: []
 --- !u!4 &459501052
@@ -5705,7 +5711,7 @@ RectTransform:
   m_GameObject: {fileID: 1494818082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 10, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 24485396}

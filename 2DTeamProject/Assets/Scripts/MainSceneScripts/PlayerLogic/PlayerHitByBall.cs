@@ -13,7 +13,10 @@ public class PlayerHitByBall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Ball")
+        {
             StartCoroutine(HitPlayer(_sprite, 0.1f)); // 피격 효과
+            SoundManager.instance.PlaySFX("BallHit");
+        }
     }
     IEnumerator HitPlayer(SpriteRenderer sprite, float delay)
     {
