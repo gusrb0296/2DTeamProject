@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.SetBGMByGameLevel();
         StartCoroutine("StartDelay");
-        BallPorduce();
+        BallProduce();
         InvokeRepeating("BallSpawn", 5, 7);
     }
     private void Update()
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         _uiManager._ScoreText.text = $"점수 : {"<color=#FFD853>" + _uiManager.scoreText + "</color>"}";
     }
 
-    public void BallPorduce() // 공생성
+    public void BallProduce() // 공생성
     {
         for (int i = 0; i < _GameLevelIndex; i++)
         {
