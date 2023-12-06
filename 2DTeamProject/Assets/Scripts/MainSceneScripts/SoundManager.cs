@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
     }
 
     // 효과음 재생
-    public void PlaySFX(string sfxName, float volume = 0.05f)
+    public void PlaySFX(string sfxName, float volume = 0.5f)
     {
         for (int i = 0; i < sfx.Length; i++)
         {
