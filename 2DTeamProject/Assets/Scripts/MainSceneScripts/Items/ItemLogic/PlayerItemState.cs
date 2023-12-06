@@ -24,6 +24,8 @@ public class PlayerItemState : MonoBehaviour
 
     public PlayerAttackSystem _player;
 
+    GameObject FreezingItem;
+
     // Item Use DurationTime
     public float itemDuration = 0f;
 
@@ -32,6 +34,7 @@ public class PlayerItemState : MonoBehaviour
     private void Awake()
     {
         _player = FindObjectOfType<PlayerAttackSystem>();
+        FreezingItem = Resources.Load<GameObject>("Prefabs/BallFreezingLogic");
     }
 
     private void Update()
@@ -44,6 +47,11 @@ public class PlayerItemState : MonoBehaviour
     public void BulletSpeedUp()
     {
         _player.Force += 0f;
+    }
+
+    public void BallFreezingItem()
+    {
+        Instantiate(FreezingItem);
     }
     #endregion
 
