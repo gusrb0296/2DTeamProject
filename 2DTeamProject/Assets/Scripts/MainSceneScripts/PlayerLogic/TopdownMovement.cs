@@ -17,7 +17,7 @@ public class TopdownMovement : MonoBehaviour
     }
     private void Start()
     {
-        _controller.OnMoveEvent += Move; // ±∏µ∂
+        _controller.OnMoveEvent += Move; // Íµ¨ÎèÖ
     }
     private void Move(Vector2 direction)
     {

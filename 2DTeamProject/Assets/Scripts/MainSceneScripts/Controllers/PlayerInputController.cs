@@ -23,6 +23,7 @@ public class PlayerInputController : TopDownCharacterController
     {
         Vector2 moveInput = value.Get<Vector2>();
         CallMoveEvent(moveInput);
+        playerMoveDir = moveInput;
     }
 
     public void OnAttack(InputValue value)
@@ -43,37 +44,23 @@ public class PlayerInputController : TopDownCharacterController
         yield return new WaitForSeconds(delay);
         sprite.enabled = false;
     }
+    
+    private float speed = 5f;
+    Vector2 playerMoveDir;
+    public void OnDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            StartCoroutine(Dash(0.2f));
+    }
+    private IEnumerator Dash(float dashTime)
+    {
+        Vector3 dashDirection = playerMoveDir.x > 0 ? Vector3.right : Vector3.left;
+        float startTime = Time.time;
 
-    [SerializeField] private float speed;
-    private bool isSliding = false; // 슬라이딩 중인지 확인
-    //public void OnJump(InputValue value)
-    //{
-    //    // Sliding
-    //    if (Input.GetKeyDown(KeyCode.LeftControl))
-    //    {
-    //        StartCoroutine(Sliding());
-    //    }
-    //}
-    //private IEnumerator Sliding()
-    //{
-    //    isSliding = true;
-    //    _anim.SetBool("isSliding", true);
-
-    //    // 슬라이딩 동작 구현
-    //    Vector3 slidingDirection = transform.forward;
-    //    float slidingTime = 0.5f; // 슬라이딩 하는 총 시간
-    //    float startTime = Time.time;
-
-    //    while (Time.time < startTime + slidingTime)
-    //    {
-    //        float elapsed = (Time.time - startTime) / slidingTime; // 슬라이딩 동작의 진행률
-    //        float curve = elapsed * elapsed * (3 - 2 * elapsed); // Sigmoid-like curve for smooth start and end
-
-    //        transform.position += slidingDirection * speed * curve * Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    isSliding = false;
-    //    _anim.SetBool("isSliding", false);
-    //}
+        while (Time.time < startTime + dashTime)
+        {
+            transform.position += dashDirection * speed * Time.deltaTime; // 대쉬 속도를 고정하고 방향에 따라 이동
+            yield return null;
+        }
+    }
 }
