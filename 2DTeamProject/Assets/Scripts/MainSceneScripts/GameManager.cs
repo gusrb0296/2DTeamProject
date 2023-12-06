@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject _BallPrefabs;
+    public GameObject _countDown;
     public UIManager _uiManager;
 
     public float _time; //시간저장
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine("StartDelay");
         BallPorduce();
         InvokeRepeating("BallSpawn", 5, 7);
     }
@@ -62,4 +64,16 @@ public class GameManager : MonoBehaviour
             CancelInvoke("BallSpawn");
         }
     } //난이도에 따른 공생성 갯수
+
+
+
+    IEnumerator StartDelay()
+    {
+        Time.timeScale = 0;
+        float pauseTime = Time.realtimeSinceStartup + 3f;
+        while (Time.realtimeSinceStartup < pauseTime)
+            yield return 0;
+        _countDown.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
 }
