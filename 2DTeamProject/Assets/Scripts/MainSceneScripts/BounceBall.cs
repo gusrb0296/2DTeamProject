@@ -21,16 +21,14 @@ public class BounceBall : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _heart = GameObject.Find("Player").GetComponent<Hearts>();
+        _anim = GameObject.Find("Player").GetComponent<Animator>();
     }
 
     private void Start()
     {
         if (_ballHp == 3)
             RandomLaunch(this.gameObject);
-
-        _heart = GameObject.Find("Player").GetComponent<Hearts>();
-        _anim = GameObject.Find("Player").GetComponent<Animator>();
-
     }
 
     // 왼쪽, 오른쪽 랜덤한 값을 받아 해당 방향으로 Speed만큼 곱한 속도로 이동
