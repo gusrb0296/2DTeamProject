@@ -4,43 +4,50 @@ using UnityEngine;
 
 public class Stars : MonoBehaviour
 {
-    public int playerScore; // ÇÃ·¹ÀÌ¾î°¡ ¾òÀº Á¡¼ö
-    private int scorePoints = 6; // 0~6±îÁöÀÇ º°À» ³ªÅ¸³»´Â Á¡¼ö
-    private int maxScore = 6; // º°À» ¸ğµÎ ¾òÀ» ¼ö ÀÖ´Â ÃÖ°í Á¡¼ö
+    public UIManager _uiManager;
+    private int scorePoints = 6; // 0~6ê¹Œì§€ì˜ ë³„ì„ ë‚˜íƒ€ë‚´ëŠ” ì ìˆ˜
+    private int maxScore = 6; // ë³„ì„ ëª¨ë‘ ì–»ì„ ìˆ˜ ìˆëŠ” ìµœê³  ì ìˆ˜
 
     public GameObject[] stars;
     public GameObject[] halfStars;
     public GameObject[] blackStars;
 
+    private void Awake()
+    {
+        _uiManager = _uiManager.GetComponent<UIManager>();
+    }
 
     void Update()
     {
-        // playerScore ¹üÀ§¿¡ µû¶ó scorePoints ¼³Á¤(ÇöÀç´Â 0 ~ 60)
-        if (playerScore >= 0 && playerScore < 10)
+        // í”Œë ˆì´ì–´ê°€ ì–»ì€ ì ìˆ˜ ë°›ì•„ì˜´
+        int playerScore = _uiManager.scoreText;
+
+        // playerScore ë²”ìœ„ì— ë”°ë¼ scorePoints ì„¤ì •(í˜„ì¬ëŠ” 0 ~ 12000)
+        if (playerScore >= 0 && playerScore < 2200)
         {
             scorePoints = 0;
         }
-        else if (playerScore >= 10 && playerScore < 20)
+        else if (playerScore >= 2200 && playerScore < 4000)
         {
             scorePoints = 1;
         }
-        else if (playerScore >= 20 && playerScore < 30)
+        else if (playerScore >= 4000 && playerScore < 6000)
         {
             scorePoints = 2;
         }
-        else if (playerScore >= 30 && playerScore < 40)
+        else if (playerScore >= 6000 && playerScore < 8000)
         {
             scorePoints = 3;
         }
-        else if (playerScore >= 40 && playerScore < 50)
+        else if (playerScore >= 8000 && playerScore < 10000)
         {
             scorePoints = 4;
         }
-        else if (playerScore >= 50 && playerScore < 60)
+        else if (playerScore >= 10000 && playerScore < 12000)
         {
             scorePoints = 5;
         }
-        else if (playerScore >= 60)
+        else if (playerScore >= 12000)
         {
             scorePoints = 6;
         }
@@ -51,7 +58,7 @@ public class Stars : MonoBehaviour
 
 
 
-        // scorePoints°¡ maxScoreº¸´Ù Å©°Ô ¼³Á¤ÇÒ °æ¿ì
+        // scorePointsê°€ maxScoreë³´ë‹¤ í¬ê²Œ ì„¤ì •í•  ê²½ìš°
         if (scorePoints > maxScore)
         {
             scorePoints = maxScore;

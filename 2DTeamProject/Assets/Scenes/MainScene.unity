@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90efbf176b651ce4d90c8a462b332971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: 60
+  _uiManager: {fileID: 643224673}
   stars:
   - {fileID: 703991516}
   - {fileID: 889611296}
@@ -5874,7 +5874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90efbf176b651ce4d90c8a462b332971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: 60
+  _uiManager: {fileID: 643224673}
   stars:
   - {fileID: 495945236}
   - {fileID: 211565751}
