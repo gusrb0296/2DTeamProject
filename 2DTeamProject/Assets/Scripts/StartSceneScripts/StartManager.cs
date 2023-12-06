@@ -80,7 +80,7 @@ public class StartManager : MonoBehaviour
     private void LoadScene(int index)
     {
         PlayerPrefs.SetInt("GameLevel", index);
-        SceneManager.LoadScene("MainScene");
+        LodingSceneController.LoadScene("MainScene");
     }
     private void EndGame()
     {
