@@ -63,6 +63,7 @@ public class BounceBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            SoundManager.instance.PlaySFX("ExplodedBall");
             BallHitted();
             Destroy(gameObject);
         }

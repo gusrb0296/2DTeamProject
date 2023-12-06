@@ -17,6 +17,7 @@ public class BallStopItemLogic : MonoBehaviour
     private void Start()
     {
         BallStop();
+        SoundManager.instance.PlaySFX("StopBallItem");
     }
 
     private void Update()

@@ -52,6 +52,7 @@ public class PlayerItemState : MonoBehaviour
     public void BallFreezingItem()
     {
         Instantiate(FreezingItem);
+        SoundManager.instance.PlaySFX("GetItems");
     }
     #endregion
 
@@ -60,24 +61,28 @@ public class PlayerItemState : MonoBehaviour
     {
         BulletStateReset();
         currentItem = ItemType.BulletUPItem;
+        SoundManager.instance.PlaySFX("GetItems");
     }
 
     public void BulletPenetrateItem()
     {
         BulletStateReset();
         currentItem = ItemType.PenetrateItem;
+        SoundManager.instance.PlaySFX("GetItems");
     }
 
     public void BulletBounceItem()
     {
         BulletStateReset();
         currentItem = ItemType.BounceItem;
+        SoundManager.instance.PlaySFX("GetItems");
     }
 
     public void BulletGuidedMissileItem()
     {
         BulletStateReset();
         currentItem = ItemType.GuidedMissileItem;
+        SoundManager.instance.PlaySFX("GetItems");
     }
     #endregion
 

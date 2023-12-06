@@ -57,6 +57,7 @@ public class PlayerAttackSystem : MonoBehaviour
         // CoolTime Check
         if (CoolTimeCheck == true)
         {
+            SoundManager.instance.PlaySFX("Attack");
             CoolTimeCheck = false;
             RecallBullet();
         }
