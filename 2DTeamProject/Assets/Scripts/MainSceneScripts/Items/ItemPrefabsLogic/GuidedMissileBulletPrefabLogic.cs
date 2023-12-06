@@ -23,7 +23,7 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
     // LockOn Search
     private void Start()
     {
-        LookOnSearch();
+        if(Balls.Count != 0) LookOnSearch();
     }
 
     // LockOn Target Attack
@@ -46,7 +46,7 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
     private void LookOnCheck()
     {
         Balls = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ball"));
-        if ( Balls != null ) nearDis = Vector3.Distance(gameObject.transform.position, Balls[0].transform.position);
+        if ( Balls.Count != 0 ) nearDis = Vector3.Distance(gameObject.transform.position, Balls[0].transform.position);
     }
 
     private void LookOnSearch()
@@ -74,8 +74,9 @@ public class GuidedMissileBulletPrefabLogic : MonoBehaviour
         else
         {
             // LookOnTarget == null ? ReSearch
-            LookOnCheck();
-            LookOnSearch();
+            // LookOnCheck();
+            // LookOnSearch();
+            return;
         }
     }
     #endregion
