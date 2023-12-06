@@ -73,6 +73,6 @@ public class ItemFall : MonoBehaviour
             }
             Counter++;
         }
-
+        Destroy(gameObject);    // 오브젝트 풀링 필요
     }
 }
