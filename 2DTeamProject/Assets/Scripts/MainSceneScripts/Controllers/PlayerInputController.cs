@@ -9,8 +9,8 @@ public class PlayerInputController : TopDownCharacterController
     [SerializeField] private SpriteRenderer _explosionSprite;
     [SerializeField] private SpriteRenderer _playerSprite;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float _dashDuration = 0.2f;  // 대시와 이펙트의 지속 시간은 동일하므로 같은 변수 사용
-    [SerializeField] private float _dashFadeSpeed = 5f;  // 대시 이펙트의 투명도 감소 속도
+    private float _dashDuration = 0.2f;  // 대시와 이펙트의 지속 시간은 동일, 같은 변수 사용
+    private float _dashFadeSpeed = 5f;  // 대시 이펙트의 투명도 감소 속도
     private Vector2 playerMoveDir;
     private PlayerAttackSystem _playerAttackSystem;
     private bool coolTimeCheckValue;
