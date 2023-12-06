@@ -46,7 +46,7 @@ public class PlayerItemState : MonoBehaviour
 
     public void BulletSpeedUp()
     {
-        _player.Force += 0f;
+        return;
     }
 
     public void BallFreezingItem()
