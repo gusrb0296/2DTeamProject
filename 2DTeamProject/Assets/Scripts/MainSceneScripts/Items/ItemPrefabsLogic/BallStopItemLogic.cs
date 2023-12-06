@@ -4,62 +4,41 @@ using UnityEngine;
 
 public class BallStopItemLogic : MonoBehaviour
 {
-    Rigidbody2D _rigid;
-
     List<GameObject> Balls;
     List<GameObject> BallsCheck;
 
-    SpriteRenderer spriteRenderer;
-
     float times = 5;
-
-    bool ItemCheck = false;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        _rigid = GetComponent<Rigidbody2D>();
+        FirstCheck();
     }
 
     private void Start()
     {
-        _rigid.AddForce(transform.up * -2, ForceMode2D.Impulse);
+        BallStop();
     }
 
     private void Update()
     {
         BallCountCheck();
-        if (ItemCheck == true)
+
+        // Time Decrease
+        Timer();
+
+        // If Broken the Ball, Check again
+        if (BallsCheck.Count != Balls.Count && times > 0)
         {
-            Timer();
-            if (BallsCheck.Count != Balls.Count && times > 0)
-            {
-                BallCountCheck();
-                BallStop();
-            }
+            BallCountCheck();
+            BallStop();
         }
+
+        // Time is zero ? Balls Activity again
         if (times <= 0)
         {
             BallStart();
 
             Destroy(gameObject);
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            if(ItemCheck == false)
-            {
-                ItemCheck = true;
-                FirstCheck();
-                BallStop();
-
-                spriteRenderer.color = new Color(1, 1, 1, 0);
-            }
-            //Destroy(gameObject);    // 추후 오브젝트 풀링
         }
     }
 
