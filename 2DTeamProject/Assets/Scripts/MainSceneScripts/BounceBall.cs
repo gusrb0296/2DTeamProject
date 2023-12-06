@@ -65,6 +65,16 @@ public class BounceBall : MonoBehaviour
         {
             SoundManager.instance.PlaySFX("ExplodedBall");
             BallHitted();
+
+            // 공 파괴 될 때 아이템 생성
+            int RandomPercent = Random.Range(0, 5);
+            if (RandomPercent == 1)
+            {
+                int RandomIndex = Random.Range(0, 5);
+                Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
+            }
+            GameManager.instance._uiManager.scoreText += Random.Range(150, 200);
+
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Player")
@@ -83,17 +93,6 @@ public class BounceBall : MonoBehaviour
             BallHitted();
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        int RandomPercent = Random.Range(0, 5);
-        if (RandomPercent == 1)
-        {
-            int RandomIndex = Random.Range(0, 5);
-            Instantiate(RewardItemList[RandomIndex], this.transform.position, Quaternion.identity);
-        }
-        GameManager.instance._uiManager.scoreText += Random.Range(150, 200);
     }
 
     private void BallHitted()
