@@ -7,16 +7,16 @@ public class PlayerInputController : TopDownCharacterController
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private SpriteRenderer _spritexplosion;
-    private PlayerItemState _playerItemState;
+    private PlayerAttackSystem _playerAttackSystem;
     private bool coolTimeCheckValue;
 
     private void Awake()
     {
-        _playerItemState = GetComponent<PlayerItemState>();
+        _playerAttackSystem = GetComponent<PlayerAttackSystem>();
     }
     private void Update()
     {
-        coolTimeCheckValue = _playerItemState.CoolTimeCheck;
+        coolTimeCheckValue = _playerAttackSystem.CoolTimeCheck;
     }
     public void OnMove(InputValue value)
     {

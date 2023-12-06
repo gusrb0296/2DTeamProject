@@ -39,6 +39,7 @@ public class PlayerItemState : MonoBehaviour
     {
         BulletStateCheck();
     }
+    #endregion
 
     #region Continuation_Item
 
