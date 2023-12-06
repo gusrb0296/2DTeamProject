@@ -10,6 +10,7 @@ public class BounceBall : MonoBehaviour
 
     private Hearts _heart;
     private Animator _anim;
+    private SpriteRenderer _sprite;
 
     private Rigidbody2D _rigidbody;
 
@@ -17,12 +18,17 @@ public class BounceBall : MonoBehaviour
 
     public List<GameObject> BallList;
     public List<GameObject> RewardItemList;
+    public List<Sprite> SpriteList;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _heart = GameObject.Find("Player").GetComponent<Hearts>();
         _anim = GameObject.Find("Player").GetComponent<Animator>();
+
+        _sprite = GetComponent<SpriteRenderer>();
+        int RanSpriteNum = Random.Range(0, 3);
+        _sprite.sprite = SpriteList[RanSpriteNum];
     }
 
     private void Start()
@@ -39,7 +45,7 @@ public class BounceBall : MonoBehaviour
         _rigidbody.AddForce(dir * speed);
     }
 
-   
+
     // 매개변수 방향대로 공이 이동
     private void DirtionLaunch(GameObject obj, Vector2 direction)
     {
@@ -49,7 +55,7 @@ public class BounceBall : MonoBehaviour
 
     // x: -8 ~ 8 /  y: 2 ~ 3 사이 위치로 랜덤하게 변경
     public void RandomSpawn(GameObject obj)
-    { 
+    {
         Vector2 RandomPos = new Vector2(Random.Range(-8, 8), Random.Range(2, 3));
         this.transform.position = RandomPos;
     }
@@ -57,7 +63,6 @@ public class BounceBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("공에 총알이 맞았습니다.");
             BallHitted();
             Destroy(gameObject);
         }
@@ -67,8 +72,6 @@ public class BounceBall : MonoBehaviour
             _heart.DecreaseHealth(_ballDamage); // 체력 감소
             if (_heart.playerHealth <= 0)
                 _anim.SetTrigger("Death");
-
-            Debug.Log($"플레이어가 공에 맞아 피가 {_ballDamage}만큼 깎였습니다.");
         }
     }
 
@@ -76,7 +79,6 @@ public class BounceBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("공에 총알이 맞았습니다.");
             BallHitted();
             Destroy(gameObject);
         }
@@ -97,7 +99,7 @@ public class BounceBall : MonoBehaviour
     {
         if (_ballHp == 3)
             Split(1);
-        else if(_ballHp == 2) 
+        else if (_ballHp == 2)
             Split(2);
         else
             Destroy(gameObject);

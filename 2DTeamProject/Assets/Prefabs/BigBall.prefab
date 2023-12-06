@@ -112,6 +112,10 @@ MonoBehaviour:
   - {fileID: 2625149983040777740, guid: 5386ae5d45348e94fb359b3f53b045e4, type: 3}
   - {fileID: 1349037908013579140, guid: 072dada1700a1a34080a4f999d6a04d8, type: 3}
   - {fileID: 3518517554829049192, guid: 1929d22e957352548b1c228cff3a0cda, type: 3}
+  SpriteList:
+  - {fileID: 21300000, guid: 01ccaea9b49214edda39f03f648b5b8b, type: 3}
+  - {fileID: 21300000, guid: e12f0ebc4252f2b4890eb549dd6c8a64, type: 3}
+  - {fileID: 21300000, guid: 15f32790d8b5c9c47a969ae8856bcec6, type: 3}
 --- !u!58 &1989967811649097837
 CircleCollider2D:
   m_ObjectHideFlags: 0
