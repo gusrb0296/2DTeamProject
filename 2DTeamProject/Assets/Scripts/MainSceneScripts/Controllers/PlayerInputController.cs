@@ -7,6 +7,8 @@ public class PlayerInputController : TopDownCharacterController
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private SpriteRenderer _spritexplosion;
+    [SerializeField] private float speed;
+    private Vector2 playerMoveDir;
     private PlayerAttackSystem _playerAttackSystem;
     private bool coolTimeCheckValue;
 
@@ -45,8 +47,6 @@ public class PlayerInputController : TopDownCharacterController
         sprite.enabled = false;
     }
     
-    private float speed = 5f;
-    Vector2 playerMoveDir;
     public void OnDash()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
