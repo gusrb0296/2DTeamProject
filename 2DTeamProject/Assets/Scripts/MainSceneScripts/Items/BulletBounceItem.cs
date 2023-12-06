@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BulletBounceItem : MonoBehaviour
+
 {
     PlayerItemState _itemManager;
 

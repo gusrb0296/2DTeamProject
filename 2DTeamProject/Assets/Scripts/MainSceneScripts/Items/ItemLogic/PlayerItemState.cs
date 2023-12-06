@@ -34,7 +34,8 @@ public class PlayerItemState : MonoBehaviour
         _player = FindObjectOfType<PlayerAttackSystem>();
     }
 
-    private void Update()
+    #region Continuation_Item
+    public void BulletDelayLower()
     {
         BulletStateCheck();
     }
