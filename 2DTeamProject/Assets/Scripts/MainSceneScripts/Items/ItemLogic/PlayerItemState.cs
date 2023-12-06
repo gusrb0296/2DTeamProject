@@ -34,43 +34,41 @@ public class PlayerItemState : MonoBehaviour
         _player = FindObjectOfType<PlayerAttackSystem>();
     }
 
-    #region Continuation_Item
-    public void BulletDelayLower()
+    private void Update()
     {
         BulletStateCheck();
     }
-    #endregion
 
     #region Continuation_Item
 
     public void BulletSpeedUp()
     {
-        _player.Force += 0.5f;
+        _player.Force += 0f;
     }
     #endregion
 
     #region OneTime_Item
     public void BulletCountUpItem()
     {
-        BulletStateReset(_player);
+        BulletStateReset();
         currentItem = ItemType.BulletUPItem;
     }
 
     public void BulletPenetrateItem()
     {
-        BulletStateReset(_player);
+        BulletStateReset();
         currentItem = ItemType.PenetrateItem;
     }
 
     public void BulletBounceItem()
     {
-        BulletStateReset(_player);
+        BulletStateReset();
         currentItem = ItemType.BounceItem;
     }
 
     public void BulletGuidedMissileItem()
     {
-        BulletStateReset(_player);
+        BulletStateReset();
         currentItem = ItemType.GuidedMissileItem;
     }
     #endregion
@@ -93,7 +91,7 @@ public class PlayerItemState : MonoBehaviour
         }
     }
 
-    private void BulletStateReset(PlayerAttackSystem player)
+    private void BulletStateReset()
     {
         itemDuration = 0f;
         itemDuration = 5;

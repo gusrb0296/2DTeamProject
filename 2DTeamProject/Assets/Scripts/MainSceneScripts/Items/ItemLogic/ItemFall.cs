@@ -20,7 +20,7 @@ public class ItemFall : MonoBehaviour
 
     private void Start()
     {
-        rigid.AddForce(transform.up * -1, ForceMode2D.Impulse);
+        rigid.AddForce(transform.up * -2, ForceMode2D.Impulse);
     }
 
     

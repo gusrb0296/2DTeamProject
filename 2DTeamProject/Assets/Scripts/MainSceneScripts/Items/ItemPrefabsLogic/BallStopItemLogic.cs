@@ -23,7 +23,7 @@ public class BallStopItemLogic : MonoBehaviour
 
     private void Start()
     {
-        _rigid.AddForce(transform.up * -1, ForceMode2D.Impulse);
+        _rigid.AddForce(transform.up * -2, ForceMode2D.Impulse);
     }
 
     private void Update()

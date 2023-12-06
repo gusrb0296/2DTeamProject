@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3927537221545990640}
   - component: {fileID: 376936691765932563}
   - component: {fileID: 4269893397272905173}
-  - component: {fileID: 5942341542254273182}
+  - component: {fileID: -133038010567720395}
   m_Layer: 0
   m_Name: Item_BulletIncrease
   m_TagString: Untagged
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0b1f8df8da35d49ac2e64b6ff5eb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5942341542254273182
+--- !u!114 &-133038010567720395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,6 +171,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349037908013579140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 439b4c05a3afdd04cbdc8e9839e2c84b, type: 3}
+  m_Script: {fileID: 11500000, guid: dfee19752b9e92a479d46f9468454592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
