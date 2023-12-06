@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         else if (_hearts.playerHealth <= 0)
         {
             SoundManager.instance.StopBGM();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
             Time.timeScale = 0;
             GameScore();
             _gameoverPanel.gameObject.SetActive(true);
