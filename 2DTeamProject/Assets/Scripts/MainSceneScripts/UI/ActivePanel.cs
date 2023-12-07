@@ -21,7 +21,6 @@ public class ActivePanel : MonoBehaviour
 
     public void DeactivatePanel()
     {
-        Debug.Log("판넬 닫기");
         panel.SetActive(false);
         Time.timeScale = 1.0f;
     }
