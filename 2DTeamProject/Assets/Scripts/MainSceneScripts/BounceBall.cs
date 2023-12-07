@@ -34,7 +34,10 @@ public class BounceBall : MonoBehaviour
     private void Start()
     {
         if (_ballHp == 3)
+        {
             RandomLaunch(this.gameObject);
+            RandomSpawn(this.gameObject);
+        }
     }
 
     // 왼쪽, 오른쪽 랜덤한 값을 받아 해당 방향으로 Speed만큼 곱한 속도로 이동
