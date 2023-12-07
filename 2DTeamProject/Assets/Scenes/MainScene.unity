@@ -6473,7 +6473,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 668093638}
         m_TargetAssemblyTypeName: ActivePanel, Assembly-CSharp
-        m_MethodName: DeactivePanels
+        m_MethodName: DeactivatePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

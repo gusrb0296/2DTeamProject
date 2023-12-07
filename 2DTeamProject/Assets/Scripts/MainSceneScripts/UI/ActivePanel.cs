@@ -8,10 +8,10 @@ public class ActivePanel : MonoBehaviour
     {
         Invoke("ActivatePanel", 0.5f);
     }
-    public void DeactivePanels()
-    {
-        Invoke("DeactivatePanel", 0.5f);
-    }
+    //public void DeactivePanels()
+    //{
+    //    Invoke("DeactivatePanel", 0.5f);
+    //}
 
     private void ActivatePanel()
     {
@@ -19,9 +19,10 @@ public class ActivePanel : MonoBehaviour
         panel.SetActive(true);
     }
 
-    private void DeactivatePanel()
+    public void DeactivatePanel()
     {
-        Time.timeScale = 1.0f;
+        Debug.Log("판넬 닫기");
         panel.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }
