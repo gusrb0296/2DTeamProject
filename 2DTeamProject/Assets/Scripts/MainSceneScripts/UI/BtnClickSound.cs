@@ -9,8 +9,9 @@ public class BtnClickSound : MonoBehaviour
     [SerializeField] private Button _restartBtn;
     [SerializeField] private Button _exitBtn;
     [SerializeField] private Button _retryBtn1;
-    [SerializeField] private Button _nextLvBtn;
+    [SerializeField] private Button _homeBtn1;
     [SerializeField] private Button _retryBtn2;
+    [SerializeField] private Button _homeBtn2;
 
     public AudioSource _btnSource;
 
@@ -21,8 +22,9 @@ public class BtnClickSound : MonoBehaviour
         _restartBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
         _exitBtn.onClick.AddListener(() => { _btnSource.Play(); QuitGame(); });
         _retryBtn1.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
-        _nextLvBtn.onClick.AddListener(() => { _btnSource.Play(); LoadScene("StartScene"); });
+        _homeBtn1.onClick.AddListener(() => { _btnSource.Play(); LoadScene("StartScene"); });
         _retryBtn2.onClick.AddListener(() => { _btnSource.Play(); LoadScene("MainScene"); });
+        _homeBtn2.onClick.AddListener(() => { _btnSource.Play(); LoadScene("StartScene"); });
     }
 
     private void LoadScene(string _sceneName)
