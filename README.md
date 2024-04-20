@@ -5,6 +5,7 @@
 
 🥩 고기 4조 팀과제입니다. 🥩
 
+![Pang 소개 gif](https://github.com/gusrb0296/2DTeamProject/assets/21351278/1e36729d-bd92-4582-8a42-9dac5a33eeec)
 
 [💭팀 노션 링크](https://www.notion.so/4-a085c4b31ce84484a60b3d391a565573)
 
